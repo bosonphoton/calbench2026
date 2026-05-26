@@ -1,0 +1,33 @@
+name: sample_experiment
+description: Minimal example showing the experiment YAML format.
+
+# Experiment-level defaults. Any GameConfigBase field (or game-specific
+# subclass field) is allowed here. Per-batch `config:` is deep-merged on top.
+defaults:
+  game_name: my_game
+  num_agents: 3
+  agents:
+    - type: llm
+      model: gpt-4o-mini
+    - type: llm
+      model: gpt-4o-mini
+    - type: llm
+      model: gpt-4o-mini
+  seed: 0
+
+batches:
+  - label: baseline
+    count: 3
+    config:
+      seed: 1
+
+  - label: bigger
+    count: 2
+    config:
+      num_agents: 5
+      agents:
+        - {type: llm, model: gpt-4o-mini}
+        - {type: llm, model: gpt-4o-mini}
+        - {type: llm, model: gpt-4o-mini}
+        - {type: llm, model: gpt-4o-mini}
+        - {type: llm, model: gpt-4o-mini}

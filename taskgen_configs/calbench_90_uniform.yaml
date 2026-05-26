@@ -1,0 +1,24 @@
+setting_name: calbench_90_uniform_5a3p
+description: >
+  Uniform-cost half of the 90-task CalBench configuration: 5 agents, 3
+  participants per meeting, 5 meetings, 3 density settings, and 5 tasks from
+  each CP-SAT easy/medium/hard bucket per density.
+output: tasks/calbench_90_uniform.jsonl
+summary_output: tasks/calbench_90_uniform_summary.json
+seed_base: 320000
+candidates_per_config: 100
+selected_per_bucket: 5
+difficulty_scorer: cp_sat_solvable_assignment_fraction
+blocked_errands_per_agent_values: [2, 4, 6]
+configs:
+  - total_agents: 5
+    subset_size: 3
+    num_slots: 16
+    num_meetings: 5
+    densities: [0.6, 0.8, 1.0]
+    vary_agent_densities: true
+    agent_density_values: [0.6, 0.8, 1.0]
+    vary_blocked_errands_per_agent: true
+    pref_level: 1
+    meeting_cost_level: 1
+    errand_cost_level: 1

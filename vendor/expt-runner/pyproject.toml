@@ -1,0 +1,22 @@
+[project]
+name = "expt-runner"
+version = "0.1.0"
+description = "CLI runner for a2a-engine experiments."
+requires-python = ">=3.11"
+dependencies = [
+    "a2a-engine",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+a2a-run = "expt_runner.run_experiment:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["expt_runner"]
+
+[tool.uv.sources]
+a2a-engine = { path = "../a2a-engine", editable = true }

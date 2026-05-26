@@ -1,0 +1,2068 @@
+name: uniform_full_dsm
+description: DSM agents on all uniform_full calendar benchmark tasks.
+defaults:
+  game_name: calendar
+  num_slots: 16
+  max_turns_per_round: 15
+  dm_cap: 1000000
+  decision_retries: 3
+  enable_fallback: false
+  fallback_max_depth: 3
+  dsm_num_proposals: 12
+  dsm_cascade_depth: 2
+  dsm_displacement_targets: 4
+  dsm_exhaustive_search: true
+  dsm_stop_on_perfect: true
+batches:
+- label: b001_easy_2a_2p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 320014
+    task_path: tasks/uniform_full.jsonl
+    task_id: b001_easy_2a_2p_d0p6_c1_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b002_easy_2a_2p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 320021
+    task_path: tasks/uniform_full.jsonl
+    task_id: b002_easy_2a_2p_d0p6_c1_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b003_easy_2a_2p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 320032
+    task_path: tasks/uniform_full.jsonl
+    task_id: b003_easy_2a_2p_d0p6_c1_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b004_easy_2a_2p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 320064
+    task_path: tasks/uniform_full.jsonl
+    task_id: b004_easy_2a_2p_d0p6_c1_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b005_medium_2a_2p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 320028
+    task_path: tasks/uniform_full.jsonl
+    task_id: b005_medium_2a_2p_d0p6_c1_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b006_medium_2a_2p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 320066
+    task_path: tasks/uniform_full.jsonl
+    task_id: b006_medium_2a_2p_d0p6_c1_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b007_medium_2a_2p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 320067
+    task_path: tasks/uniform_full.jsonl
+    task_id: b007_medium_2a_2p_d0p6_c1_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b008_medium_2a_2p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 320070
+    task_path: tasks/uniform_full.jsonl
+    task_id: b008_medium_2a_2p_d0p6_c1_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b009_hard_2a_2p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 320044
+    task_path: tasks/uniform_full.jsonl
+    task_id: b009_hard_2a_2p_d0p6_c1_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b010_hard_2a_2p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 320045
+    task_path: tasks/uniform_full.jsonl
+    task_id: b010_hard_2a_2p_d0p6_c1_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b011_hard_2a_2p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 320061
+    task_path: tasks/uniform_full.jsonl
+    task_id: b011_hard_2a_2p_d0p6_c1_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b012_hard_2a_2p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 320073
+    task_path: tasks/uniform_full.jsonl
+    task_id: b012_hard_2a_2p_d0p6_c1_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b013_easy_2a_2p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 321039
+    task_path: tasks/uniform_full.jsonl
+    task_id: b013_easy_2a_2p_d0p8_c1_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b014_easy_2a_2p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 321062
+    task_path: tasks/uniform_full.jsonl
+    task_id: b014_easy_2a_2p_d0p8_c1_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b015_easy_2a_2p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 321018
+    task_path: tasks/uniform_full.jsonl
+    task_id: b015_easy_2a_2p_d0p8_c1_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b016_easy_2a_2p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 321057
+    task_path: tasks/uniform_full.jsonl
+    task_id: b016_easy_2a_2p_d0p8_c1_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b017_medium_2a_2p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 321084
+    task_path: tasks/uniform_full.jsonl
+    task_id: b017_medium_2a_2p_d0p8_c1_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b018_medium_2a_2p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 321088
+    task_path: tasks/uniform_full.jsonl
+    task_id: b018_medium_2a_2p_d0p8_c1_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b019_medium_2a_2p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 321096
+    task_path: tasks/uniform_full.jsonl
+    task_id: b019_medium_2a_2p_d0p8_c1_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b020_medium_2a_2p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 321002
+    task_path: tasks/uniform_full.jsonl
+    task_id: b020_medium_2a_2p_d0p8_c1_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b021_hard_2a_2p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 321089
+    task_path: tasks/uniform_full.jsonl
+    task_id: b021_hard_2a_2p_d0p8_c1_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b022_hard_2a_2p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 321090
+    task_path: tasks/uniform_full.jsonl
+    task_id: b022_hard_2a_2p_d0p8_c1_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b023_hard_2a_2p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 321091
+    task_path: tasks/uniform_full.jsonl
+    task_id: b023_hard_2a_2p_d0p8_c1_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b024_hard_2a_2p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 321093
+    task_path: tasks/uniform_full.jsonl
+    task_id: b024_hard_2a_2p_d0p8_c1_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b025_easy_2a_2p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 322030
+    task_path: tasks/uniform_full.jsonl
+    task_id: b025_easy_2a_2p_d1p0_c1_1
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b026_easy_2a_2p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 322067
+    task_path: tasks/uniform_full.jsonl
+    task_id: b026_easy_2a_2p_d1p0_c1_2
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b027_easy_2a_2p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 322013
+    task_path: tasks/uniform_full.jsonl
+    task_id: b027_easy_2a_2p_d1p0_c1_3
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b028_easy_2a_2p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 322042
+    task_path: tasks/uniform_full.jsonl
+    task_id: b028_easy_2a_2p_d1p0_c1_4
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b029_medium_2a_2p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 322005
+    task_path: tasks/uniform_full.jsonl
+    task_id: b029_medium_2a_2p_d1p0_c1_1
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b030_medium_2a_2p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 322020
+    task_path: tasks/uniform_full.jsonl
+    task_id: b030_medium_2a_2p_d1p0_c1_2
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b031_medium_2a_2p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 322096
+    task_path: tasks/uniform_full.jsonl
+    task_id: b031_medium_2a_2p_d1p0_c1_3
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b032_medium_2a_2p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 322001
+    task_path: tasks/uniform_full.jsonl
+    task_id: b032_medium_2a_2p_d1p0_c1_4
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b033_hard_2a_2p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 322024
+    task_path: tasks/uniform_full.jsonl
+    task_id: b033_hard_2a_2p_d1p0_c1_1
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b034_hard_2a_2p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 322038
+    task_path: tasks/uniform_full.jsonl
+    task_id: b034_hard_2a_2p_d1p0_c1_2
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b035_hard_2a_2p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 322043
+    task_path: tasks/uniform_full.jsonl
+    task_id: b035_hard_2a_2p_d1p0_c1_3
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b036_hard_2a_2p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 322046
+    task_path: tasks/uniform_full.jsonl
+    task_id: b036_hard_2a_2p_d1p0_c1_4
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dsm
+    - type: dsm
+- label: b037_easy_5a_3p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 323032
+    task_path: tasks/uniform_full.jsonl
+    task_id: b037_easy_5a_3p_d0p6_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b038_easy_5a_3p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 323074
+    task_path: tasks/uniform_full.jsonl
+    task_id: b038_easy_5a_3p_d0p6_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b039_easy_5a_3p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 323075
+    task_path: tasks/uniform_full.jsonl
+    task_id: b039_easy_5a_3p_d0p6_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b040_easy_5a_3p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 323000
+    task_path: tasks/uniform_full.jsonl
+    task_id: b040_easy_5a_3p_d0p6_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b041_medium_5a_3p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 323047
+    task_path: tasks/uniform_full.jsonl
+    task_id: b041_medium_5a_3p_d0p6_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b042_medium_5a_3p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 323057
+    task_path: tasks/uniform_full.jsonl
+    task_id: b042_medium_5a_3p_d0p6_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b043_medium_5a_3p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 323060
+    task_path: tasks/uniform_full.jsonl
+    task_id: b043_medium_5a_3p_d0p6_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b044_medium_5a_3p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 323066
+    task_path: tasks/uniform_full.jsonl
+    task_id: b044_medium_5a_3p_d0p6_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b045_hard_5a_3p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 323027
+    task_path: tasks/uniform_full.jsonl
+    task_id: b045_hard_5a_3p_d0p6_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b046_hard_5a_3p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 323034
+    task_path: tasks/uniform_full.jsonl
+    task_id: b046_hard_5a_3p_d0p6_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b047_hard_5a_3p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 323050
+    task_path: tasks/uniform_full.jsonl
+    task_id: b047_hard_5a_3p_d0p6_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b048_hard_5a_3p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 323055
+    task_path: tasks/uniform_full.jsonl
+    task_id: b048_hard_5a_3p_d0p6_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b049_easy_5a_3p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 324001
+    task_path: tasks/uniform_full.jsonl
+    task_id: b049_easy_5a_3p_d0p8_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b050_easy_5a_3p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 324088
+    task_path: tasks/uniform_full.jsonl
+    task_id: b050_easy_5a_3p_d0p8_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b051_easy_5a_3p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 324021
+    task_path: tasks/uniform_full.jsonl
+    task_id: b051_easy_5a_3p_d0p8_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b052_easy_5a_3p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 324023
+    task_path: tasks/uniform_full.jsonl
+    task_id: b052_easy_5a_3p_d0p8_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b053_medium_5a_3p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 324078
+    task_path: tasks/uniform_full.jsonl
+    task_id: b053_medium_5a_3p_d0p8_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b054_medium_5a_3p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 324054
+    task_path: tasks/uniform_full.jsonl
+    task_id: b054_medium_5a_3p_d0p8_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b055_medium_5a_3p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 324083
+    task_path: tasks/uniform_full.jsonl
+    task_id: b055_medium_5a_3p_d0p8_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b056_medium_5a_3p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 324006
+    task_path: tasks/uniform_full.jsonl
+    task_id: b056_medium_5a_3p_d0p8_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b057_hard_5a_3p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 324031
+    task_path: tasks/uniform_full.jsonl
+    task_id: b057_hard_5a_3p_d0p8_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b058_hard_5a_3p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 324033
+    task_path: tasks/uniform_full.jsonl
+    task_id: b058_hard_5a_3p_d0p8_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b059_hard_5a_3p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 324055
+    task_path: tasks/uniform_full.jsonl
+    task_id: b059_hard_5a_3p_d0p8_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b060_hard_5a_3p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 324061
+    task_path: tasks/uniform_full.jsonl
+    task_id: b060_hard_5a_3p_d0p8_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b061_easy_5a_3p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 325028
+    task_path: tasks/uniform_full.jsonl
+    task_id: b061_easy_5a_3p_d1p0_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b062_easy_5a_3p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 325051
+    task_path: tasks/uniform_full.jsonl
+    task_id: b062_easy_5a_3p_d1p0_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b063_easy_5a_3p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 325058
+    task_path: tasks/uniform_full.jsonl
+    task_id: b063_easy_5a_3p_d1p0_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b064_easy_5a_3p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 325070
+    task_path: tasks/uniform_full.jsonl
+    task_id: b064_easy_5a_3p_d1p0_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b065_medium_5a_3p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 325098
+    task_path: tasks/uniform_full.jsonl
+    task_id: b065_medium_5a_3p_d1p0_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b066_medium_5a_3p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 325010
+    task_path: tasks/uniform_full.jsonl
+    task_id: b066_medium_5a_3p_d1p0_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b067_medium_5a_3p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 325014
+    task_path: tasks/uniform_full.jsonl
+    task_id: b067_medium_5a_3p_d1p0_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b068_medium_5a_3p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 325041
+    task_path: tasks/uniform_full.jsonl
+    task_id: b068_medium_5a_3p_d1p0_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b069_hard_5a_3p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 325005
+    task_path: tasks/uniform_full.jsonl
+    task_id: b069_hard_5a_3p_d1p0_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b070_hard_5a_3p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 325035
+    task_path: tasks/uniform_full.jsonl
+    task_id: b070_hard_5a_3p_d1p0_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b071_hard_5a_3p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 325043
+    task_path: tasks/uniform_full.jsonl
+    task_id: b071_hard_5a_3p_d1p0_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b072_hard_5a_3p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 325087
+    task_path: tasks/uniform_full.jsonl
+    task_id: b072_hard_5a_3p_d1p0_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b073_easy_5a_5p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 326084
+    task_path: tasks/uniform_full.jsonl
+    task_id: b073_easy_5a_5p_d0p6_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b074_easy_5a_5p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 326077
+    task_path: tasks/uniform_full.jsonl
+    task_id: b074_easy_5a_5p_d0p6_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b075_easy_5a_5p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 326023
+    task_path: tasks/uniform_full.jsonl
+    task_id: b075_easy_5a_5p_d0p6_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b076_easy_5a_5p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 326038
+    task_path: tasks/uniform_full.jsonl
+    task_id: b076_easy_5a_5p_d0p6_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b077_medium_5a_5p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 326068
+    task_path: tasks/uniform_full.jsonl
+    task_id: b077_medium_5a_5p_d0p6_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b078_medium_5a_5p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 326080
+    task_path: tasks/uniform_full.jsonl
+    task_id: b078_medium_5a_5p_d0p6_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b079_medium_5a_5p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 326029
+    task_path: tasks/uniform_full.jsonl
+    task_id: b079_medium_5a_5p_d0p6_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b080_medium_5a_5p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 326081
+    task_path: tasks/uniform_full.jsonl
+    task_id: b080_medium_5a_5p_d0p6_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b081_hard_5a_5p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 326048
+    task_path: tasks/uniform_full.jsonl
+    task_id: b081_hard_5a_5p_d0p6_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b082_hard_5a_5p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 326054
+    task_path: tasks/uniform_full.jsonl
+    task_id: b082_hard_5a_5p_d0p6_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b083_hard_5a_5p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 326073
+    task_path: tasks/uniform_full.jsonl
+    task_id: b083_hard_5a_5p_d0p6_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b084_hard_5a_5p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 326055
+    task_path: tasks/uniform_full.jsonl
+    task_id: b084_hard_5a_5p_d0p6_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b085_easy_5a_5p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 327052
+    task_path: tasks/uniform_full.jsonl
+    task_id: b085_easy_5a_5p_d0p8_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b086_easy_5a_5p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 327053
+    task_path: tasks/uniform_full.jsonl
+    task_id: b086_easy_5a_5p_d0p8_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b087_easy_5a_5p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 327080
+    task_path: tasks/uniform_full.jsonl
+    task_id: b087_easy_5a_5p_d0p8_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b088_easy_5a_5p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 327025
+    task_path: tasks/uniform_full.jsonl
+    task_id: b088_easy_5a_5p_d0p8_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b089_medium_5a_5p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 327067
+    task_path: tasks/uniform_full.jsonl
+    task_id: b089_medium_5a_5p_d0p8_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b090_medium_5a_5p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 327071
+    task_path: tasks/uniform_full.jsonl
+    task_id: b090_medium_5a_5p_d0p8_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b091_medium_5a_5p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 327072
+    task_path: tasks/uniform_full.jsonl
+    task_id: b091_medium_5a_5p_d0p8_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b092_medium_5a_5p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 327075
+    task_path: tasks/uniform_full.jsonl
+    task_id: b092_medium_5a_5p_d0p8_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b093_hard_5a_5p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 327082
+    task_path: tasks/uniform_full.jsonl
+    task_id: b093_hard_5a_5p_d0p8_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b094_hard_5a_5p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 327016
+    task_path: tasks/uniform_full.jsonl
+    task_id: b094_hard_5a_5p_d0p8_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b095_hard_5a_5p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 327027
+    task_path: tasks/uniform_full.jsonl
+    task_id: b095_hard_5a_5p_d0p8_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b096_hard_5a_5p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 327045
+    task_path: tasks/uniform_full.jsonl
+    task_id: b096_hard_5a_5p_d0p8_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b097_easy_5a_5p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 328017
+    task_path: tasks/uniform_full.jsonl
+    task_id: b097_easy_5a_5p_d1p0_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b098_easy_5a_5p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 328000
+    task_path: tasks/uniform_full.jsonl
+    task_id: b098_easy_5a_5p_d1p0_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b099_easy_5a_5p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 328010
+    task_path: tasks/uniform_full.jsonl
+    task_id: b099_easy_5a_5p_d1p0_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b100_easy_5a_5p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 328050
+    task_path: tasks/uniform_full.jsonl
+    task_id: b100_easy_5a_5p_d1p0_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b101_medium_5a_5p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 328004
+    task_path: tasks/uniform_full.jsonl
+    task_id: b101_medium_5a_5p_d1p0_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b102_medium_5a_5p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 328016
+    task_path: tasks/uniform_full.jsonl
+    task_id: b102_medium_5a_5p_d1p0_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b103_medium_5a_5p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 328039
+    task_path: tasks/uniform_full.jsonl
+    task_id: b103_medium_5a_5p_d1p0_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b104_medium_5a_5p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 328074
+    task_path: tasks/uniform_full.jsonl
+    task_id: b104_medium_5a_5p_d1p0_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b105_hard_5a_5p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 328014
+    task_path: tasks/uniform_full.jsonl
+    task_id: b105_hard_5a_5p_d1p0_c1_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b106_hard_5a_5p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 328056
+    task_path: tasks/uniform_full.jsonl
+    task_id: b106_hard_5a_5p_d1p0_c1_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b107_hard_5a_5p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 328065
+    task_path: tasks/uniform_full.jsonl
+    task_id: b107_hard_5a_5p_d1p0_c1_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+- label: b108_hard_5a_5p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 328086
+    task_path: tasks/uniform_full.jsonl
+    task_id: b108_hard_5a_5p_d1p0_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm
+    - type: dsm

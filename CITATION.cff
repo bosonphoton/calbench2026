@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+title: "CalBench: Evaluating Coordination--Privacy Trade-offs in Multi-Agent LLMs"
+message: "If you use CalBench, please cite the paper and this repository."
+type: software
+authors:
+  - name: Anonymous Authors
+date-released: 2026-05-26
+license: "NOASSERTION"

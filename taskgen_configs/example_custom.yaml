@@ -1,0 +1,17 @@
+setting_name: my_calendar_suite
+description: Small example suite for developing new benchmark settings.
+output: tasks/my_calendar_suite.jsonl
+summary_output: tasks/my_calendar_suite_summary.json
+seed_base: 900000
+candidates_per_config: 12
+selected_per_bucket: 1
+difficulty_scorer: cp_sat_solvable_assignment_fraction
+configs:
+  - total_agents: [3, 4]
+    subset_sizes: [2, 3]
+    num_slots: 16
+    num_meetings: 3
+    densities: [0.4, 0.7]
+    pref_levels: [1, 3]
+    meeting_cost_level: 1
+    errand_cost_level: 3

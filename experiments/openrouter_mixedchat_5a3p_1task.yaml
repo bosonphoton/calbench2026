@@ -1,0 +1,42 @@
+name: openrouter_mixedchat_5a3p_1task
+description: >
+  One-task OpenRouter run with five agents, a three-agent participant subset,
+  and both groupchat and private DM tools enabled.
+defaults:
+  game_name: calendar
+  task_path: tasks/openrouter_mixedchat_5a3p_1task.jsonl
+  num_agents: 5
+  num_slots: 8
+  num_meetings: 1
+  num_participants: 3
+  max_turns_per_round: 4
+  decision_retries: 1
+  enable_fallback: false
+  communication_protocol: dm_and_groupchat
+  agents:
+    - type: llm
+      model: qwen/qwen3-8b
+      temperature: 0.0
+      max_tokens: 1024
+    - type: llm
+      model: meta-llama/llama-3.1-8b-instruct
+      temperature: 0.0
+      max_tokens: 1024
+    - type: llm
+      model: openai/gpt-oss-20b
+      temperature: 0.0
+      max_tokens: 1024
+    - type: llm
+      model: qwen/qwen3-8b
+      temperature: 0.0
+      max_tokens: 1024
+    - type: llm
+      model: meta-llama/llama-3.1-8b-instruct
+      temperature: 0.0
+      max_tokens: 1024
+batches:
+  - label: openrouter_mixedchat_5a3p_t001
+    count: 1
+    config:
+      seed: 940001
+      task_id: openrouter_mixedchat_5a3p_t001

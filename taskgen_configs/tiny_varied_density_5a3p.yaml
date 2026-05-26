@@ -1,0 +1,44 @@
+setting_name: tiny_varied_density_5a3p
+description: >
+  Tiny 5-agent, 3-participant fixture suite for mixed-model experiments with
+  dense per-agent calendars. Densities are restricted to 0.6, 0.8, and 1.0.
+  The three config cells are designed for the default fixed model lineup
+  [Qwen, Llama, GPT-OSS, Qwen, Llama], giving each model roughly balanced
+  starting-density exposure across the suite.
+output: tasks/tiny_varied_density_5a3p.jsonl
+summary_output: tasks/tiny_varied_density_5a3p_summary.json
+seed_base: 950000
+candidates_per_config: 6
+selected_per_bucket: 1
+difficulty_scorer: cp_sat_solvable_assignment_fraction
+configs:
+  - total_agents: 5
+    subset_size: 3
+    num_slots: 8
+    num_meetings: 1
+    density: 0.8
+    agent_densities: [0.6, 0.6, 0.6, 0.8, 0.8]
+    participant_lists: [[0, 1, 2]]
+    pref_level: 1
+    meeting_cost_level: 1
+    errand_cost_level: 1
+  - total_agents: 5
+    subset_size: 3
+    num_slots: 8
+    num_meetings: 1
+    density: 0.8
+    agent_densities: [0.8, 0.8, 0.8, 1.0, 1.0]
+    participant_lists: [[2, 3, 4]]
+    pref_level: 1
+    meeting_cost_level: 1
+    errand_cost_level: 1
+  - total_agents: 5
+    subset_size: 3
+    num_slots: 8
+    num_meetings: 1
+    density: 0.8
+    agent_densities: [1.0, 1.0, 1.0, 0.6, 0.6]
+    participant_lists: [[0, 1, 3]]
+    pref_level: 1
+    meeting_cost_level: 1
+    errand_cost_level: 1

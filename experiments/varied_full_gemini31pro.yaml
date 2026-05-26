@@ -1,0 +1,2927 @@
+name: varied_full_gemini31pro
+description: Gemini 3.1 Pro preview on all varied_full calendar benchmark tasks.
+defaults:
+  game_name: calendar
+  num_slots: 16
+  max_turns_per_round: 15
+  dm_cap: 1000000
+  decision_retries: 3
+  enable_fallback: false
+  fallback_max_depth: 3
+batches:
+- label: b001_easy_2a_2p_d0p6_c3_1
+  count: 1
+  config:
+    seed: 420000
+    task_path: tasks/varied_full.jsonl
+    task_id: b001_easy_2a_2p_d0p6_c3_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b002_easy_2a_2p_d0p6_c3_2
+  count: 1
+  config:
+    seed: 420004
+    task_path: tasks/varied_full.jsonl
+    task_id: b002_easy_2a_2p_d0p6_c3_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b003_easy_2a_2p_d0p6_c3_3
+  count: 1
+  config:
+    seed: 420018
+    task_path: tasks/varied_full.jsonl
+    task_id: b003_easy_2a_2p_d0p6_c3_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b004_easy_2a_2p_d0p6_c3_4
+  count: 1
+  config:
+    seed: 420024
+    task_path: tasks/varied_full.jsonl
+    task_id: b004_easy_2a_2p_d0p6_c3_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b005_medium_2a_2p_d0p6_c3_1
+  count: 1
+  config:
+    seed: 420088
+    task_path: tasks/varied_full.jsonl
+    task_id: b005_medium_2a_2p_d0p6_c3_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b006_medium_2a_2p_d0p6_c3_2
+  count: 1
+  config:
+    seed: 420091
+    task_path: tasks/varied_full.jsonl
+    task_id: b006_medium_2a_2p_d0p6_c3_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b007_medium_2a_2p_d0p6_c3_3
+  count: 1
+  config:
+    seed: 420093
+    task_path: tasks/varied_full.jsonl
+    task_id: b007_medium_2a_2p_d0p6_c3_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b008_medium_2a_2p_d0p6_c3_4
+  count: 1
+  config:
+    seed: 420094
+    task_path: tasks/varied_full.jsonl
+    task_id: b008_medium_2a_2p_d0p6_c3_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b009_hard_2a_2p_d0p6_c3_1
+  count: 1
+  config:
+    seed: 420033
+    task_path: tasks/varied_full.jsonl
+    task_id: b009_hard_2a_2p_d0p6_c3_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b010_hard_2a_2p_d0p6_c3_2
+  count: 1
+  config:
+    seed: 420076
+    task_path: tasks/varied_full.jsonl
+    task_id: b010_hard_2a_2p_d0p6_c3_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b011_hard_2a_2p_d0p6_c3_3
+  count: 1
+  config:
+    seed: 420080
+    task_path: tasks/varied_full.jsonl
+    task_id: b011_hard_2a_2p_d0p6_c3_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b012_hard_2a_2p_d0p6_c3_4
+  count: 1
+  config:
+    seed: 420086
+    task_path: tasks/varied_full.jsonl
+    task_id: b012_hard_2a_2p_d0p6_c3_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b013_easy_2a_2p_d0p8_c3_1
+  count: 1
+  config:
+    seed: 421032
+    task_path: tasks/varied_full.jsonl
+    task_id: b013_easy_2a_2p_d0p8_c3_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b014_easy_2a_2p_d0p8_c3_2
+  count: 1
+  config:
+    seed: 421059
+    task_path: tasks/varied_full.jsonl
+    task_id: b014_easy_2a_2p_d0p8_c3_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b015_easy_2a_2p_d0p8_c3_3
+  count: 1
+  config:
+    seed: 421090
+    task_path: tasks/varied_full.jsonl
+    task_id: b015_easy_2a_2p_d0p8_c3_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b016_easy_2a_2p_d0p8_c3_4
+  count: 1
+  config:
+    seed: 421018
+    task_path: tasks/varied_full.jsonl
+    task_id: b016_easy_2a_2p_d0p8_c3_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b017_medium_2a_2p_d0p8_c3_1
+  count: 1
+  config:
+    seed: 421027
+    task_path: tasks/varied_full.jsonl
+    task_id: b017_medium_2a_2p_d0p8_c3_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b018_medium_2a_2p_d0p8_c3_2
+  count: 1
+  config:
+    seed: 421035
+    task_path: tasks/varied_full.jsonl
+    task_id: b018_medium_2a_2p_d0p8_c3_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b019_medium_2a_2p_d0p8_c3_3
+  count: 1
+  config:
+    seed: 421044
+    task_path: tasks/varied_full.jsonl
+    task_id: b019_medium_2a_2p_d0p8_c3_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b020_medium_2a_2p_d0p8_c3_4
+  count: 1
+  config:
+    seed: 421045
+    task_path: tasks/varied_full.jsonl
+    task_id: b020_medium_2a_2p_d0p8_c3_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b021_hard_2a_2p_d0p8_c3_1
+  count: 1
+  config:
+    seed: 421046
+    task_path: tasks/varied_full.jsonl
+    task_id: b021_hard_2a_2p_d0p8_c3_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b022_hard_2a_2p_d0p8_c3_2
+  count: 1
+  config:
+    seed: 421099
+    task_path: tasks/varied_full.jsonl
+    task_id: b022_hard_2a_2p_d0p8_c3_2
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b023_hard_2a_2p_d0p8_c3_3
+  count: 1
+  config:
+    seed: 421015
+    task_path: tasks/varied_full.jsonl
+    task_id: b023_hard_2a_2p_d0p8_c3_3
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b024_hard_2a_2p_d0p8_c3_4
+  count: 1
+  config:
+    seed: 421017
+    task_path: tasks/varied_full.jsonl
+    task_id: b024_hard_2a_2p_d0p8_c3_4
+    num_agents: 2
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b025_easy_2a_2p_d1p0_c3_1
+  count: 1
+  config:
+    seed: 422008
+    task_path: tasks/varied_full.jsonl
+    task_id: b025_easy_2a_2p_d1p0_c3_1
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b026_easy_2a_2p_d1p0_c3_2
+  count: 1
+  config:
+    seed: 422077
+    task_path: tasks/varied_full.jsonl
+    task_id: b026_easy_2a_2p_d1p0_c3_2
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b027_easy_2a_2p_d1p0_c3_3
+  count: 1
+  config:
+    seed: 422093
+    task_path: tasks/varied_full.jsonl
+    task_id: b027_easy_2a_2p_d1p0_c3_3
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b028_easy_2a_2p_d1p0_c3_4
+  count: 1
+  config:
+    seed: 422011
+    task_path: tasks/varied_full.jsonl
+    task_id: b028_easy_2a_2p_d1p0_c3_4
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b029_medium_2a_2p_d1p0_c3_1
+  count: 1
+  config:
+    seed: 422026
+    task_path: tasks/varied_full.jsonl
+    task_id: b029_medium_2a_2p_d1p0_c3_1
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b030_medium_2a_2p_d1p0_c3_2
+  count: 1
+  config:
+    seed: 422027
+    task_path: tasks/varied_full.jsonl
+    task_id: b030_medium_2a_2p_d1p0_c3_2
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b031_medium_2a_2p_d1p0_c3_3
+  count: 1
+  config:
+    seed: 422037
+    task_path: tasks/varied_full.jsonl
+    task_id: b031_medium_2a_2p_d1p0_c3_3
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b032_medium_2a_2p_d1p0_c3_4
+  count: 1
+  config:
+    seed: 422044
+    task_path: tasks/varied_full.jsonl
+    task_id: b032_medium_2a_2p_d1p0_c3_4
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b033_hard_2a_2p_d1p0_c3_1
+  count: 1
+  config:
+    seed: 422058
+    task_path: tasks/varied_full.jsonl
+    task_id: b033_hard_2a_2p_d1p0_c3_1
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b034_hard_2a_2p_d1p0_c3_2
+  count: 1
+  config:
+    seed: 422083
+    task_path: tasks/varied_full.jsonl
+    task_id: b034_hard_2a_2p_d1p0_c3_2
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b035_hard_2a_2p_d1p0_c3_3
+  count: 1
+  config:
+    seed: 422088
+    task_path: tasks/varied_full.jsonl
+    task_id: b035_hard_2a_2p_d1p0_c3_3
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b036_hard_2a_2p_d1p0_c3_4
+  count: 1
+  config:
+    seed: 422009
+    task_path: tasks/varied_full.jsonl
+    task_id: b036_hard_2a_2p_d1p0_c3_4
+    num_agents: 2
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b037_easy_5a_3p_d0p6_c3_1
+  count: 1
+  config:
+    seed: 423018
+    task_path: tasks/varied_full.jsonl
+    task_id: b037_easy_5a_3p_d0p6_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b038_easy_5a_3p_d0p6_c3_2
+  count: 1
+  config:
+    seed: 423080
+    task_path: tasks/varied_full.jsonl
+    task_id: b038_easy_5a_3p_d0p6_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b039_easy_5a_3p_d0p6_c3_3
+  count: 1
+  config:
+    seed: 423092
+    task_path: tasks/varied_full.jsonl
+    task_id: b039_easy_5a_3p_d0p6_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b040_easy_5a_3p_d0p6_c3_4
+  count: 1
+  config:
+    seed: 423093
+    task_path: tasks/varied_full.jsonl
+    task_id: b040_easy_5a_3p_d0p6_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b041_medium_5a_3p_d0p6_c3_1
+  count: 1
+  config:
+    seed: 423068
+    task_path: tasks/varied_full.jsonl
+    task_id: b041_medium_5a_3p_d0p6_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b042_medium_5a_3p_d0p6_c3_2
+  count: 1
+  config:
+    seed: 423069
+    task_path: tasks/varied_full.jsonl
+    task_id: b042_medium_5a_3p_d0p6_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b043_medium_5a_3p_d0p6_c3_3
+  count: 1
+  config:
+    seed: 423074
+    task_path: tasks/varied_full.jsonl
+    task_id: b043_medium_5a_3p_d0p6_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b044_medium_5a_3p_d0p6_c3_4
+  count: 1
+  config:
+    seed: 423076
+    task_path: tasks/varied_full.jsonl
+    task_id: b044_medium_5a_3p_d0p6_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b045_hard_5a_3p_d0p6_c3_1
+  count: 1
+  config:
+    seed: 423051
+    task_path: tasks/varied_full.jsonl
+    task_id: b045_hard_5a_3p_d0p6_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b046_hard_5a_3p_d0p6_c3_2
+  count: 1
+  config:
+    seed: 423055
+    task_path: tasks/varied_full.jsonl
+    task_id: b046_hard_5a_3p_d0p6_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b047_hard_5a_3p_d0p6_c3_3
+  count: 1
+  config:
+    seed: 423058
+    task_path: tasks/varied_full.jsonl
+    task_id: b047_hard_5a_3p_d0p6_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b048_hard_5a_3p_d0p6_c3_4
+  count: 1
+  config:
+    seed: 423063
+    task_path: tasks/varied_full.jsonl
+    task_id: b048_hard_5a_3p_d0p6_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b049_easy_5a_3p_d0p8_c3_1
+  count: 1
+  config:
+    seed: 424073
+    task_path: tasks/varied_full.jsonl
+    task_id: b049_easy_5a_3p_d0p8_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b050_easy_5a_3p_d0p8_c3_2
+  count: 1
+  config:
+    seed: 424087
+    task_path: tasks/varied_full.jsonl
+    task_id: b050_easy_5a_3p_d0p8_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b051_easy_5a_3p_d0p8_c3_3
+  count: 1
+  config:
+    seed: 424041
+    task_path: tasks/varied_full.jsonl
+    task_id: b051_easy_5a_3p_d0p8_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b052_easy_5a_3p_d0p8_c3_4
+  count: 1
+  config:
+    seed: 424026
+    task_path: tasks/varied_full.jsonl
+    task_id: b052_easy_5a_3p_d0p8_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b053_medium_5a_3p_d0p8_c3_1
+  count: 1
+  config:
+    seed: 424037
+    task_path: tasks/varied_full.jsonl
+    task_id: b053_medium_5a_3p_d0p8_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b054_medium_5a_3p_d0p8_c3_2
+  count: 1
+  config:
+    seed: 424064
+    task_path: tasks/varied_full.jsonl
+    task_id: b054_medium_5a_3p_d0p8_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b055_medium_5a_3p_d0p8_c3_3
+  count: 1
+  config:
+    seed: 424089
+    task_path: tasks/varied_full.jsonl
+    task_id: b055_medium_5a_3p_d0p8_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b056_medium_5a_3p_d0p8_c3_4
+  count: 1
+  config:
+    seed: 424080
+    task_path: tasks/varied_full.jsonl
+    task_id: b056_medium_5a_3p_d0p8_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b057_hard_5a_3p_d0p8_c3_1
+  count: 1
+  config:
+    seed: 424025
+    task_path: tasks/varied_full.jsonl
+    task_id: b057_hard_5a_3p_d0p8_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b058_hard_5a_3p_d0p8_c3_2
+  count: 1
+  config:
+    seed: 424088
+    task_path: tasks/varied_full.jsonl
+    task_id: b058_hard_5a_3p_d0p8_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b059_hard_5a_3p_d0p8_c3_3
+  count: 1
+  config:
+    seed: 424028
+    task_path: tasks/varied_full.jsonl
+    task_id: b059_hard_5a_3p_d0p8_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b060_hard_5a_3p_d0p8_c3_4
+  count: 1
+  config:
+    seed: 424077
+    task_path: tasks/varied_full.jsonl
+    task_id: b060_hard_5a_3p_d0p8_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b061_easy_5a_3p_d1p0_c3_1
+  count: 1
+  config:
+    seed: 425055
+    task_path: tasks/varied_full.jsonl
+    task_id: b061_easy_5a_3p_d1p0_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b062_easy_5a_3p_d1p0_c3_2
+  count: 1
+  config:
+    seed: 425074
+    task_path: tasks/varied_full.jsonl
+    task_id: b062_easy_5a_3p_d1p0_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b063_easy_5a_3p_d1p0_c3_3
+  count: 1
+  config:
+    seed: 425078
+    task_path: tasks/varied_full.jsonl
+    task_id: b063_easy_5a_3p_d1p0_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b064_easy_5a_3p_d1p0_c3_4
+  count: 1
+  config:
+    seed: 425049
+    task_path: tasks/varied_full.jsonl
+    task_id: b064_easy_5a_3p_d1p0_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b065_medium_5a_3p_d1p0_c3_1
+  count: 1
+  config:
+    seed: 425070
+    task_path: tasks/varied_full.jsonl
+    task_id: b065_medium_5a_3p_d1p0_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b066_medium_5a_3p_d1p0_c3_2
+  count: 1
+  config:
+    seed: 425088
+    task_path: tasks/varied_full.jsonl
+    task_id: b066_medium_5a_3p_d1p0_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b067_medium_5a_3p_d1p0_c3_3
+  count: 1
+  config:
+    seed: 425023
+    task_path: tasks/varied_full.jsonl
+    task_id: b067_medium_5a_3p_d1p0_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b068_medium_5a_3p_d1p0_c3_4
+  count: 1
+  config:
+    seed: 425011
+    task_path: tasks/varied_full.jsonl
+    task_id: b068_medium_5a_3p_d1p0_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b069_hard_5a_3p_d1p0_c3_1
+  count: 1
+  config:
+    seed: 425084
+    task_path: tasks/varied_full.jsonl
+    task_id: b069_hard_5a_3p_d1p0_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b070_hard_5a_3p_d1p0_c3_2
+  count: 1
+  config:
+    seed: 425091
+    task_path: tasks/varied_full.jsonl
+    task_id: b070_hard_5a_3p_d1p0_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b071_hard_5a_3p_d1p0_c3_3
+  count: 1
+  config:
+    seed: 425047
+    task_path: tasks/varied_full.jsonl
+    task_id: b071_hard_5a_3p_d1p0_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b072_hard_5a_3p_d1p0_c3_4
+  count: 1
+  config:
+    seed: 425057
+    task_path: tasks/varied_full.jsonl
+    task_id: b072_hard_5a_3p_d1p0_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 3
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b073_easy_5a_5p_d0p6_c3_1
+  count: 1
+  config:
+    seed: 426029
+    task_path: tasks/varied_full.jsonl
+    task_id: b073_easy_5a_5p_d0p6_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b074_easy_5a_5p_d0p6_c3_2
+  count: 1
+  config:
+    seed: 426000
+    task_path: tasks/varied_full.jsonl
+    task_id: b074_easy_5a_5p_d0p6_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b075_easy_5a_5p_d0p6_c3_3
+  count: 1
+  config:
+    seed: 426068
+    task_path: tasks/varied_full.jsonl
+    task_id: b075_easy_5a_5p_d0p6_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b076_easy_5a_5p_d0p6_c3_4
+  count: 1
+  config:
+    seed: 426024
+    task_path: tasks/varied_full.jsonl
+    task_id: b076_easy_5a_5p_d0p6_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b077_medium_5a_5p_d0p6_c3_1
+  count: 1
+  config:
+    seed: 426039
+    task_path: tasks/varied_full.jsonl
+    task_id: b077_medium_5a_5p_d0p6_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b078_medium_5a_5p_d0p6_c3_2
+  count: 1
+  config:
+    seed: 426020
+    task_path: tasks/varied_full.jsonl
+    task_id: b078_medium_5a_5p_d0p6_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b079_medium_5a_5p_d0p6_c3_3
+  count: 1
+  config:
+    seed: 426006
+    task_path: tasks/varied_full.jsonl
+    task_id: b079_medium_5a_5p_d0p6_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b080_medium_5a_5p_d0p6_c3_4
+  count: 1
+  config:
+    seed: 426042
+    task_path: tasks/varied_full.jsonl
+    task_id: b080_medium_5a_5p_d0p6_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b081_hard_5a_5p_d0p6_c3_1
+  count: 1
+  config:
+    seed: 426084
+    task_path: tasks/varied_full.jsonl
+    task_id: b081_hard_5a_5p_d0p6_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b082_hard_5a_5p_d0p6_c3_2
+  count: 1
+  config:
+    seed: 426038
+    task_path: tasks/varied_full.jsonl
+    task_id: b082_hard_5a_5p_d0p6_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b083_hard_5a_5p_d0p6_c3_3
+  count: 1
+  config:
+    seed: 426044
+    task_path: tasks/varied_full.jsonl
+    task_id: b083_hard_5a_5p_d0p6_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b084_hard_5a_5p_d0p6_c3_4
+  count: 1
+  config:
+    seed: 426095
+    task_path: tasks/varied_full.jsonl
+    task_id: b084_hard_5a_5p_d0p6_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b085_easy_5a_5p_d0p8_c3_1
+  count: 1
+  config:
+    seed: 427051
+    task_path: tasks/varied_full.jsonl
+    task_id: b085_easy_5a_5p_d0p8_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b086_easy_5a_5p_d0p8_c3_2
+  count: 1
+  config:
+    seed: 427041
+    task_path: tasks/varied_full.jsonl
+    task_id: b086_easy_5a_5p_d0p8_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b087_easy_5a_5p_d0p8_c3_3
+  count: 1
+  config:
+    seed: 427070
+    task_path: tasks/varied_full.jsonl
+    task_id: b087_easy_5a_5p_d0p8_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b088_easy_5a_5p_d0p8_c3_4
+  count: 1
+  config:
+    seed: 427056
+    task_path: tasks/varied_full.jsonl
+    task_id: b088_easy_5a_5p_d0p8_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b089_medium_5a_5p_d0p8_c3_1
+  count: 1
+  config:
+    seed: 427081
+    task_path: tasks/varied_full.jsonl
+    task_id: b089_medium_5a_5p_d0p8_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b090_medium_5a_5p_d0p8_c3_2
+  count: 1
+  config:
+    seed: 427086
+    task_path: tasks/varied_full.jsonl
+    task_id: b090_medium_5a_5p_d0p8_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b091_medium_5a_5p_d0p8_c3_3
+  count: 1
+  config:
+    seed: 427050
+    task_path: tasks/varied_full.jsonl
+    task_id: b091_medium_5a_5p_d0p8_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b092_medium_5a_5p_d0p8_c3_4
+  count: 1
+  config:
+    seed: 427085
+    task_path: tasks/varied_full.jsonl
+    task_id: b092_medium_5a_5p_d0p8_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b093_hard_5a_5p_d0p8_c3_1
+  count: 1
+  config:
+    seed: 427079
+    task_path: tasks/varied_full.jsonl
+    task_id: b093_hard_5a_5p_d0p8_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b094_hard_5a_5p_d0p8_c3_2
+  count: 1
+  config:
+    seed: 427089
+    task_path: tasks/varied_full.jsonl
+    task_id: b094_hard_5a_5p_d0p8_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b095_hard_5a_5p_d0p8_c3_3
+  count: 1
+  config:
+    seed: 427077
+    task_path: tasks/varied_full.jsonl
+    task_id: b095_hard_5a_5p_d0p8_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b096_hard_5a_5p_d0p8_c3_4
+  count: 1
+  config:
+    seed: 427021
+    task_path: tasks/varied_full.jsonl
+    task_id: b096_hard_5a_5p_d0p8_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 0.8
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b097_easy_5a_5p_d1p0_c3_1
+  count: 1
+  config:
+    seed: 428094
+    task_path: tasks/varied_full.jsonl
+    task_id: b097_easy_5a_5p_d1p0_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b098_easy_5a_5p_d1p0_c3_2
+  count: 1
+  config:
+    seed: 428086
+    task_path: tasks/varied_full.jsonl
+    task_id: b098_easy_5a_5p_d1p0_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b099_easy_5a_5p_d1p0_c3_3
+  count: 1
+  config:
+    seed: 428037
+    task_path: tasks/varied_full.jsonl
+    task_id: b099_easy_5a_5p_d1p0_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b100_easy_5a_5p_d1p0_c3_4
+  count: 1
+  config:
+    seed: 428058
+    task_path: tasks/varied_full.jsonl
+    task_id: b100_easy_5a_5p_d1p0_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b101_medium_5a_5p_d1p0_c3_1
+  count: 1
+  config:
+    seed: 428074
+    task_path: tasks/varied_full.jsonl
+    task_id: b101_medium_5a_5p_d1p0_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b102_medium_5a_5p_d1p0_c3_2
+  count: 1
+  config:
+    seed: 428009
+    task_path: tasks/varied_full.jsonl
+    task_id: b102_medium_5a_5p_d1p0_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b103_medium_5a_5p_d1p0_c3_3
+  count: 1
+  config:
+    seed: 428001
+    task_path: tasks/varied_full.jsonl
+    task_id: b103_medium_5a_5p_d1p0_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b104_medium_5a_5p_d1p0_c3_4
+  count: 1
+  config:
+    seed: 428013
+    task_path: tasks/varied_full.jsonl
+    task_id: b104_medium_5a_5p_d1p0_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b105_hard_5a_5p_d1p0_c3_1
+  count: 1
+  config:
+    seed: 428072
+    task_path: tasks/varied_full.jsonl
+    task_id: b105_hard_5a_5p_d1p0_c3_1
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b106_hard_5a_5p_d1p0_c3_2
+  count: 1
+  config:
+    seed: 428093
+    task_path: tasks/varied_full.jsonl
+    task_id: b106_hard_5a_5p_d1p0_c3_2
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b107_hard_5a_5p_d1p0_c3_3
+  count: 1
+  config:
+    seed: 428008
+    task_path: tasks/varied_full.jsonl
+    task_id: b107_hard_5a_5p_d1p0_c3_3
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+- label: b108_hard_5a_5p_d1p0_c3_4
+  count: 1
+  config:
+    seed: 428044
+    task_path: tasks/varied_full.jsonl
+    task_id: b108_hard_5a_5p_d1p0_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai

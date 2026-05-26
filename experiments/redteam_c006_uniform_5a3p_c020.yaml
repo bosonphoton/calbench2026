@@ -1,0 +1,211 @@
+name: redteam_c006_uniform_5a3p_c020
+description: Agent 0 uses the c006 privacy red-team adversarial prompt against c020 DSPy agents on all 36 uniform 5-agent, 3-participant calendar scenarios.
+defaults:
+  game_name: calendar
+  num_agents: 5
+  num_slots: 16
+  max_turns_per_round: 6
+  dm_cap: 100
+  decision_retries: 2
+  enable_fallback: false
+  task_path: tasks/uniform_full.jsonl
+  num_meetings: 5
+  num_participants: 3
+  agents:
+    - type: dspy
+      model: gemini-3-flash-preview
+      prompt_variant: redteam_gepa_0505_private_calendar_c020_r3_cloudpickle_c006_e7a749f43a.md
+      prompt_variant_dir: prompt_variants_redteam
+    - type: dspy
+      model: gemini-3-flash-preview
+      prompt_variant: gepa_05042248_reflective_gepa_train3_c20_c020_e9f8fd8368.md
+    - type: dspy
+      model: gemini-3-flash-preview
+      prompt_variant: gepa_05042248_reflective_gepa_train3_c20_c020_e9f8fd8368.md
+    - type: dspy
+      model: gemini-3-flash-preview
+      prompt_variant: gepa_05042248_reflective_gepa_train3_c20_c020_e9f8fd8368.md
+    - type: dspy
+      model: gemini-3-flash-preview
+      prompt_variant: gepa_05042248_reflective_gepa_train3_c20_c020_e9f8fd8368.md
+batches:
+  - label: b037_easy_5a_3p_d0p6_c1_1
+    count: 1
+    config:
+      seed: 323032
+      task_id: b037_easy_5a_3p_d0p6_c1_1
+  - label: b038_easy_5a_3p_d0p6_c1_2
+    count: 1
+    config:
+      seed: 323074
+      task_id: b038_easy_5a_3p_d0p6_c1_2
+  - label: b039_easy_5a_3p_d0p6_c1_3
+    count: 1
+    config:
+      seed: 323075
+      task_id: b039_easy_5a_3p_d0p6_c1_3
+  - label: b040_easy_5a_3p_d0p6_c1_4
+    count: 1
+    config:
+      seed: 323000
+      task_id: b040_easy_5a_3p_d0p6_c1_4
+  - label: b041_medium_5a_3p_d0p6_c1_1
+    count: 1
+    config:
+      seed: 323047
+      task_id: b041_medium_5a_3p_d0p6_c1_1
+  - label: b042_medium_5a_3p_d0p6_c1_2
+    count: 1
+    config:
+      seed: 323057
+      task_id: b042_medium_5a_3p_d0p6_c1_2
+  - label: b043_medium_5a_3p_d0p6_c1_3
+    count: 1
+    config:
+      seed: 323060
+      task_id: b043_medium_5a_3p_d0p6_c1_3
+  - label: b044_medium_5a_3p_d0p6_c1_4
+    count: 1
+    config:
+      seed: 323066
+      task_id: b044_medium_5a_3p_d0p6_c1_4
+  - label: b045_hard_5a_3p_d0p6_c1_1
+    count: 1
+    config:
+      seed: 323027
+      task_id: b045_hard_5a_3p_d0p6_c1_1
+  - label: b046_hard_5a_3p_d0p6_c1_2
+    count: 1
+    config:
+      seed: 323034
+      task_id: b046_hard_5a_3p_d0p6_c1_2
+  - label: b047_hard_5a_3p_d0p6_c1_3
+    count: 1
+    config:
+      seed: 323050
+      task_id: b047_hard_5a_3p_d0p6_c1_3
+  - label: b048_hard_5a_3p_d0p6_c1_4
+    count: 1
+    config:
+      seed: 323055
+      task_id: b048_hard_5a_3p_d0p6_c1_4
+  - label: b049_easy_5a_3p_d0p8_c1_1
+    count: 1
+    config:
+      seed: 324001
+      task_id: b049_easy_5a_3p_d0p8_c1_1
+  - label: b050_easy_5a_3p_d0p8_c1_2
+    count: 1
+    config:
+      seed: 324088
+      task_id: b050_easy_5a_3p_d0p8_c1_2
+  - label: b051_easy_5a_3p_d0p8_c1_3
+    count: 1
+    config:
+      seed: 324021
+      task_id: b051_easy_5a_3p_d0p8_c1_3
+  - label: b052_easy_5a_3p_d0p8_c1_4
+    count: 1
+    config:
+      seed: 324023
+      task_id: b052_easy_5a_3p_d0p8_c1_4
+  - label: b053_medium_5a_3p_d0p8_c1_1
+    count: 1
+    config:
+      seed: 324078
+      task_id: b053_medium_5a_3p_d0p8_c1_1
+  - label: b054_medium_5a_3p_d0p8_c1_2
+    count: 1
+    config:
+      seed: 324054
+      task_id: b054_medium_5a_3p_d0p8_c1_2
+  - label: b055_medium_5a_3p_d0p8_c1_3
+    count: 1
+    config:
+      seed: 324083
+      task_id: b055_medium_5a_3p_d0p8_c1_3
+  - label: b056_medium_5a_3p_d0p8_c1_4
+    count: 1
+    config:
+      seed: 324006
+      task_id: b056_medium_5a_3p_d0p8_c1_4
+  - label: b057_hard_5a_3p_d0p8_c1_1
+    count: 1
+    config:
+      seed: 324031
+      task_id: b057_hard_5a_3p_d0p8_c1_1
+  - label: b058_hard_5a_3p_d0p8_c1_2
+    count: 1
+    config:
+      seed: 324033
+      task_id: b058_hard_5a_3p_d0p8_c1_2
+  - label: b059_hard_5a_3p_d0p8_c1_3
+    count: 1
+    config:
+      seed: 324055
+      task_id: b059_hard_5a_3p_d0p8_c1_3
+  - label: b060_hard_5a_3p_d0p8_c1_4
+    count: 1
+    config:
+      seed: 324061
+      task_id: b060_hard_5a_3p_d0p8_c1_4
+  - label: b061_easy_5a_3p_d1p0_c1_1
+    count: 1
+    config:
+      seed: 325028
+      task_id: b061_easy_5a_3p_d1p0_c1_1
+  - label: b062_easy_5a_3p_d1p0_c1_2
+    count: 1
+    config:
+      seed: 325051
+      task_id: b062_easy_5a_3p_d1p0_c1_2
+  - label: b063_easy_5a_3p_d1p0_c1_3
+    count: 1
+    config:
+      seed: 325058
+      task_id: b063_easy_5a_3p_d1p0_c1_3
+  - label: b064_easy_5a_3p_d1p0_c1_4
+    count: 1
+    config:
+      seed: 325070
+      task_id: b064_easy_5a_3p_d1p0_c1_4
+  - label: b065_medium_5a_3p_d1p0_c1_1
+    count: 1
+    config:
+      seed: 325098
+      task_id: b065_medium_5a_3p_d1p0_c1_1
+  - label: b066_medium_5a_3p_d1p0_c1_2
+    count: 1
+    config:
+      seed: 325010
+      task_id: b066_medium_5a_3p_d1p0_c1_2
+  - label: b067_medium_5a_3p_d1p0_c1_3
+    count: 1
+    config:
+      seed: 325014
+      task_id: b067_medium_5a_3p_d1p0_c1_3
+  - label: b068_medium_5a_3p_d1p0_c1_4
+    count: 1
+    config:
+      seed: 325041
+      task_id: b068_medium_5a_3p_d1p0_c1_4
+  - label: b069_hard_5a_3p_d1p0_c1_1
+    count: 1
+    config:
+      seed: 325005
+      task_id: b069_hard_5a_3p_d1p0_c1_1
+  - label: b070_hard_5a_3p_d1p0_c1_2
+    count: 1
+    config:
+      seed: 325035
+      task_id: b070_hard_5a_3p_d1p0_c1_2
+  - label: b071_hard_5a_3p_d1p0_c1_3
+    count: 1
+    config:
+      seed: 325043
+      task_id: b071_hard_5a_3p_d1p0_c1_3
+  - label: b072_hard_5a_3p_d1p0_c1_4
+    count: 1
+    config:
+      seed: 325087
+      task_id: b072_hard_5a_3p_d1p0_c1_4

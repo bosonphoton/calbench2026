@@ -1,0 +1,28 @@
+{
+  "num_tasks": 1,
+  "setting": "openrouter_mixedchat_5a3p_1task",
+  "task_ids": [
+    "openrouter_mixedchat_5a3p_t001"
+  ],
+  "tasks": [
+    {
+      "density": 0.6,
+      "greedy_cost": 3,
+      "optimal_cost": 1,
+      "participants": [
+        0,
+        2,
+        4
+      ],
+      "seed": 940001,
+      "speaker_order": [
+        0,
+        2,
+        4
+      ],
+      "subset_size": 3,
+      "task_id": "openrouter_mixedchat_5a3p_t001",
+      "total_agents": 5
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+name: calendar_example
+defaults:
+  game_name: calendar
+  num_agents: 2
+  num_slots: 16
+  density: 0.5
+  pref_level: 1
+  num_meetings: 1
+  max_tool_calls: 20
+  agents:
+    - {type: llm, model: gpt-4o-mini}
+    - {type: llm, model: gpt-4o-mini}
+batches:
+  - label: low_density
+    count: 5
+    config: {seed: 1, density: 0.3}
+  - label: high_density
+    count: 5
+    config: {seed: 3, density: 0.8}

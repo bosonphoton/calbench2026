@@ -1,0 +1,39 @@
+name: openrouter_groupchat_3a3p_2tasks
+description: >
+  Two-task smoke run for a heterogeneous three-agent OpenRouter team using
+  groupchat communication.
+defaults:
+  game_name: calendar
+  task_path: tasks/openrouter_groupchat_3a3p_2tasks.jsonl
+  num_agents: 3
+  num_slots: 8
+  num_meetings: 1
+  num_participants: 3
+  max_turns_per_round: 4
+  decision_retries: 1
+  enable_fallback: false
+  communication_protocol: groupchat
+  agents:
+    - type: llm
+      model: qwen/qwen3-8b
+      temperature: 0.0
+      max_tokens: 1024
+    - type: llm
+      model: meta-llama/llama-3.1-8b-instruct
+      temperature: 0.0
+      max_tokens: 1024
+    - type: llm
+      model: openai/gpt-oss-20b
+      temperature: 0.0
+      max_tokens: 1024
+batches:
+  - label: openrouter_groupchat_3a3p_t001
+    count: 1
+    config:
+      seed: 930001
+      task_id: openrouter_groupchat_3a3p_t001
+  - label: openrouter_groupchat_3a3p_t002
+    count: 1
+    config:
+      seed: 930002
+      task_id: openrouter_groupchat_3a3p_t002

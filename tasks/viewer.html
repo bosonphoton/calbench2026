@@ -1,0 +1,1930 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calendar Game Trace Viewer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['IBM Plex Sans', 'sans-serif'],
+          mono: ['IBM Plex Mono', 'monospace'],
+        },
+        colors: {
+          term: {
+            bg:      '#0d1117',
+            surface: '#161b22',
+            panel:   '#1c2128',
+            border:  '#30363d',
+            muted:   '#6e7681',
+            text:    '#c9d1d9',
+            bright:  '#f0f6fc',
+            green:   '#3fb950',
+            greenDim:'#196c2e',
+            amber:   '#d29922',
+            amberDim:'#5a3f06',
+            blue:    '#58a6ff',
+            blueDim: '#0d419d',
+            red:     '#f85149',
+            redDim:  '#6a2323',
+            purple:  '#bc8cff',
+            purpleDim:'#3b2070',
+            cyan:    '#39c5cf',
+          }
+        },
+        animation: {
+          'fade-in': 'fadeIn 0.15s ease-out',
+          'slide-in': 'slideIn 0.2s ease-out',
+          'pulse-slow': 'pulse 2s cubic-bezier(0.4,0,0.6,1) infinite',
+        },
+        keyframes: {
+          fadeIn: { from: { opacity: '0', transform: 'translateY(4px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+          slideIn: { from: { opacity: '0', transform: 'translateX(-8px)' }, to: { opacity: '1', transform: 'translateX(0)' } },
+        }
+      }
+    }
+  }
+</script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; background: #0d1117; color: #c9d1d9; font-family: 'IBM Plex Sans', sans-serif; }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #161b22; }
+  ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #484f58; }
+
+  /* Scrubber */
+  #scrubber {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #30363d;
+    outline: none;
+    cursor: pointer;
+  }
+  #scrubber::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #58a6ff;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  #scrubber::-webkit-slider-thumb:hover { background: #79c0ff; }
+
+  .phase-badge-CHEAP_TALK  { background: #0d419d; color: #58a6ff; border: 1px solid #1f4f9e; }
+  .phase-badge-DECISION    { background: #5a3f06; color: #d29922; border: 1px solid #7a5e1a; }
+  .phase-badge-RESOLUTION  { background: #196c2e; color: #3fb950; border: 1px solid #2d6e42; }
+  .phase-badge-GAME_START  { background: #3b2070; color: #bc8cff; border: 1px solid #5c3b9e; }
+  .phase-badge-GAME_END    { background: #196c2e; color: #3fb950; border: 1px solid #2d6e42; }
+  .phase-badge-REFLECTION  { background: #1f3147; color: #39c5cf; border: 1px solid #24556a; }
+  .phase-badge-default     { background: #21262d; color: #6e7681; border: 1px solid #30363d; }
+
+  .event-item { cursor: pointer; transition: background 0.1s; border-left: 2px solid transparent; }
+  .event-item:hover { background: #21262d; }
+  .event-item.selected { background: #1c2840; border-left-color: #58a6ff; }
+  .event-item.phase-CHEAP_TALK.selected { border-left-color: #58a6ff; background: #0f1e3d; }
+  .event-item.phase-DECISION.selected   { border-left-color: #d29922; background: #1f1400; }
+  .event-item.phase-RESOLUTION.selected { border-left-color: #3fb950; background: #0a1f10; }
+  .event-item.phase-REFLECTION.selected { border-left-color: #39c5cf; background: #0b252c; }
+
+  .tab-btn { cursor: pointer; transition: all 0.15s; border-bottom: 2px solid transparent; }
+  .tab-btn.active { color: #58a6ff; border-bottom-color: #58a6ff; }
+
+  .slot-cell { transition: all 0.2s; }
+  .slot-free     { background: #161b22; border: 1px solid #21262d; }
+  .slot-errand   { background: #1a1300; border: 1px solid #5a3f06; }
+  .slot-blocked  { background: #2b1215; border: 1px solid #6a2323; }
+  .slot-meeting  { background: #0a1f10; border: 1px solid #196c2e; }
+  .slot-conflict { border-color: #f85149 !important; box-shadow: 0 0 0 1px #f85149; }
+  .slot-coordinated { border-color: #3fb950 !important; box-shadow: 0 0 0 1px #3fb950; }
+
+  .collapsible-content { overflow: hidden; transition: max-height 0.25s ease; }
+  .collapsible-content.collapsed { max-height: 0 !important; }
+
+  pre { white-space: pre-wrap; word-break: break-all; }
+  .system-prompt-panel {
+    max-height: min(58vh, 560px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .phase-group-header { cursor: pointer; user-select: none; }
+  .phase-group-header:hover { background: #21262d; }
+
+  .metrics-overlay {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(13,17,23,0.85); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .metrics-panel {
+    background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+    width: min(900px, 95vw); max-height: 85vh; overflow-y: auto;
+  }
+
+  .drag-over { outline: 2px dashed #58a6ff; outline-offset: -2px; }
+  .autoplay-active { animation: pulse 1s ease-in-out infinite alternate; }
+
+  @keyframes eventPulse {
+    0%   { opacity: 1; }
+    50%  { opacity: 0.6; }
+    100% { opacity: 1; }
+  }
+  .event-playing { animation: eventPulse 0.8s ease-in-out infinite; }
+
+  .thinking-block { font-style: italic; opacity: 0.75; }
+  .json-key { color: #79c0ff; }
+  .json-str { color: #a5d6ff; }
+  .json-num { color: #f2cc60; }
+  .json-bool { color: #ff9e64; }
+
+  .bar-fill { transition: width 0.3s ease; }
+
+  .belief-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(58px, 1fr));
+    gap: 6px;
+  }
+  .belief-cell {
+    min-height: 54px;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    background: #161b22;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .belief-cell-free { background: #0d1b2f; border-color: #1f4f9e; color: #58a6ff; }
+  .belief-cell-busy { background: #2b1215; border-color: #6a2323; color: #f85149; }
+  .belief-cell-zero { background: #161b22; border-color: #30363d; color: #6e7681; }
+  .belief-slot-label { font-size: 10px; color: #6e7681; }
+  .belief-score { font-size: 15px; font-weight: 700; line-height: 1; }
+  .belief-prob { font-size: 10px; opacity: 0.8; }
+
+  /* =========================================================
+     LIGHT THEME OVERRIDES
+     ========================================================= */
+  html[data-theme="light"],
+  html[data-theme="light"] body {
+    background: #f6f8fa !important;
+    color: #24292f !important;
+  }
+  html[data-theme="light"] ::-webkit-scrollbar-track { background: #f0f2f5; }
+  html[data-theme="light"] ::-webkit-scrollbar-thumb { background: #d0d7de; }
+  html[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: #adb5bd; }
+  html[data-theme="light"] #scrubber { background: #d0d7de; }
+  html[data-theme="light"] #scrubber::-webkit-slider-thumb { background: #0969da; }
+  html[data-theme="light"] #scrubber::-webkit-slider-thumb:hover { background: #0550ae; }
+
+  /* Phase badges */
+  html[data-theme="light"] .phase-badge-CHEAP_TALK  { background: #ddf4ff; color: #0969da; border-color: #b6dfff; }
+  html[data-theme="light"] .phase-badge-DECISION    { background: #fff8c5; color: #9a6700; border-color: #ffe8a2; }
+  html[data-theme="light"] .phase-badge-RESOLUTION  { background: #d4f7dc; color: #1a7f37; border-color: #a0e7b0; }
+  html[data-theme="light"] .phase-badge-GAME_START  { background: #fbefff; color: #6e40c9; border-color: #e8d0ff; }
+  html[data-theme="light"] .phase-badge-GAME_END    { background: #d4f7dc; color: #1a7f37; border-color: #a0e7b0; }
+  html[data-theme="light"] .phase-badge-REFLECTION  { background: #ddf4ff; color: #1b7c83; border-color: #b6dfff; }
+  html[data-theme="light"] .phase-badge-default     { background: #f0f2f5; color: #6e7781; border-color: #d0d7de; }
+
+  /* Event items */
+  html[data-theme="light"] .event-item:hover { background: #f0f2f5; }
+  html[data-theme="light"] .event-item.selected { background: #ddf4ff; border-left-color: #0969da; }
+  html[data-theme="light"] .event-item.phase-CHEAP_TALK.selected { border-left-color: #0969da; background: #ddf4ff; }
+  html[data-theme="light"] .event-item.phase-DECISION.selected   { border-left-color: #9a6700; background: #fff8c5; }
+  html[data-theme="light"] .event-item.phase-RESOLUTION.selected { border-left-color: #1a7f37; background: #d4f7dc; }
+  html[data-theme="light"] .event-item.phase-REFLECTION.selected { border-left-color: #1b7c83; background: #ddf4ff; }
+
+  html[data-theme="light"] .tab-btn.active { color: #0969da; border-bottom-color: #0969da; }
+  html[data-theme="light"] .phase-group-header:hover { background: #f0f2f5; }
+
+  /* Slot cells */
+  html[data-theme="light"] .slot-free      { background: #ffffff; border-color: #e8ecf0; }
+  html[data-theme="light"] .slot-errand    { background: #fff8c5; border-color: #ffe8a2; }
+  html[data-theme="light"] .slot-blocked   { background: #ffebe9; border-color: #ffcecb; }
+  html[data-theme="light"] .slot-meeting   { background: #d4f7dc; border-color: #a0e7b0; }
+  html[data-theme="light"] .slot-conflict  { border-color: #cf222e !important; box-shadow: 0 0 0 1px #cf222e; }
+  html[data-theme="light"] .slot-coordinated { border-color: #1a7f37 !important; box-shadow: 0 0 0 1px #1a7f37; }
+
+  /* Metrics overlay */
+  html[data-theme="light"] .metrics-overlay { background: rgba(246,248,250,0.88); }
+  html[data-theme="light"] .metrics-panel   { background: #ffffff; border-color: #d0d7de; }
+
+  /* Drag overlay */
+  html[data-theme="light"] .drag-over { outline-color: #0969da; }
+
+  /* JSON syntax */
+  html[data-theme="light"] .json-key  { color: #0550ae; }
+  html[data-theme="light"] .json-str  { color: #0a3069; }
+  html[data-theme="light"] .json-num  { color: #953800; }
+  html[data-theme="light"] .json-bool { color: #953800; }
+  html[data-theme="light"] .thinking-block { color: #6e7781; }
+  html[data-theme="light"] .belief-cell      { background: #ffffff; border-color: #d0d7de; }
+  html[data-theme="light"] .belief-cell-free { background: #ddf4ff; border-color: #b6dfff; color: #0969da; }
+  html[data-theme="light"] .belief-cell-busy { background: #ffebe9; border-color: #ffcecb; color: #cf222e; }
+  html[data-theme="light"] .belief-cell-zero { background: #f6f8fa; border-color: #d0d7de; color: #6e7781; }
+
+  /* Tailwind bg-term-* */
+  html[data-theme="light"] .bg-term-bg       { background-color: #f6f8fa !important; }
+  html[data-theme="light"] .bg-term-surface  { background-color: #ffffff !important; }
+  html[data-theme="light"] .bg-term-panel    { background-color: #f0f2f5 !important; }
+  html[data-theme="light"] .bg-term-greenDim { background-color: #d4f7dc !important; }
+  html[data-theme="light"] .bg-term-redDim   { background-color: #ffebe9 !important; }
+  html[data-theme="light"] .bg-term-blueDim  { background-color: #ddf4ff !important; }
+  html[data-theme="light"] .bg-term-amberDim { background-color: #fff8c5 !important; }
+  html[data-theme="light"] .bg-term-purpleDim{ background-color: #fbefff !important; }
+  html[data-theme="light"] .bg-term-green    { background-color: #1a7f37 !important; }
+  html[data-theme="light"] .bg-term-cyan     { background-color: #1b7c83 !important; }
+
+  /* Tailwind text-term-* */
+  html[data-theme="light"] .text-term-muted  { color: #6e7781 !important; }
+  html[data-theme="light"] .text-term-text   { color: #24292f !important; }
+  html[data-theme="light"] .text-term-bright { color: #1a1e22 !important; }
+  html[data-theme="light"] .text-term-green  { color: #1a7f37 !important; }
+  html[data-theme="light"] .text-term-amber  { color: #9a6700 !important; }
+  html[data-theme="light"] .text-term-blue   { color: #0969da !important; }
+  html[data-theme="light"] .text-term-red    { color: #cf222e !important; }
+  html[data-theme="light"] .text-term-cyan   { color: #1b7c83 !important; }
+  html[data-theme="light"] .text-term-purple { color: #6e40c9 !important; }
+  html[data-theme="light"] .text-term-border { color: #d0d7de !important; }
+
+  /* Tailwind border-term-* */
+  html[data-theme="light"] .border-term-border { border-color: #d0d7de !important; }
+  html[data-theme="light"] .border-term-blue   { border-color: #0969da !important; }
+  html[data-theme="light"] .border-term-green  { border-color: #1a7f37 !important; }
+  html[data-theme="light"] .border-term-red    { border-color: #cf222e !important; }
+  html[data-theme="light"] .border-term-amber  { border-color: #9a6700 !important; }
+
+  /* Tailwind hover:bg-term-* / hover:border-term-* / hover:text-term-* */
+  html[data-theme="light"] .hover\:bg-term-panel:hover   { background-color: #f0f2f5 !important; }
+  html[data-theme="light"] .hover\:bg-term-surface:hover { background-color: #ffffff !important; }
+  html[data-theme="light"] .hover\:border-term-blue:hover  { border-color: #0969da !important; }
+  html[data-theme="light"] .hover\:border-term-green:hover { border-color: #1a7f37 !important; }
+  html[data-theme="light"] .hover\:border-term-red:hover   { border-color: #cf222e !important; }
+  html[data-theme="light"] .hover\:text-term-blue:hover    { color: #0969da !important; }
+  html[data-theme="light"] .hover\:text-term-green:hover   { color: #1a7f37 !important; }
+  html[data-theme="light"] .hover\:text-term-red:hover     { color: #cf222e !important; }
+</style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden">
+
+<!-- ===================== HEADER ===================== -->
+<header id="app-header" class="flex-none border-b border-term-border bg-term-surface">
+  <div class="flex items-center gap-4 px-4 py-2">
+    <!-- Logo / Title -->
+    <div class="flex items-center gap-2 shrink-0">
+      <div class="w-2 h-2 rounded-full bg-term-green animate-pulse-slow"></div>
+      <span class="font-mono text-sm font-semibold text-term-bright tracking-wide uppercase">CalTrace</span>
+    </div>
+
+    <!-- Game info pills -->
+    <div id="header-meta" class="flex items-center gap-2 flex-wrap text-xs font-mono text-term-muted">
+      <span class="text-term-muted italic">No trace loaded — drag &amp; drop a JSON file or click Load</span>
+    </div>
+
+    <div class="ml-auto flex items-center gap-2">
+      <!-- Run / trace selector served by scripts/cloud/trace_viewer_server.py -->
+      <select id="run-select" class="hidden max-w-[220px] px-2 py-1 text-xs font-mono rounded border border-term-border bg-term-panel text-term-text hover:border-term-blue transition-all" title="Benchmark run">
+        <option value="">RUN</option>
+      </select>
+      <select id="trace-select" class="hidden max-w-[360px] px-2 py-1 text-xs font-mono rounded border border-term-border bg-term-panel text-term-text hover:border-term-blue transition-all" title="Trace">
+        <option value="">TRACE</option>
+      </select>
+      <!-- Metrics button -->
+      <button id="metrics-btn" class="hidden px-2 py-1 text-xs font-mono rounded border border-term-border bg-term-panel text-term-text hover:border-term-blue hover:text-term-blue transition-all">
+        METRICS ↗
+      </button>
+      <!-- Load button -->
+      <label class="px-2 py-1 text-xs font-mono rounded border border-term-border bg-term-panel text-term-text hover:border-term-blue hover:text-term-blue transition-all cursor-pointer">
+        LOAD JSON
+        <input id="file-input" type="file" accept=".json,.jsonl" class="sr-only">
+      </label>
+      <!-- Theme toggle -->
+      <button id="theme-toggle" class="px-2 py-1 text-xs font-mono rounded border border-term-border bg-term-panel text-term-text hover:border-term-blue hover:text-term-blue transition-all">
+        ☀ LIGHT
+      </button>
+      <!-- Autoplay -->
+      <select id="autoplay-speed" class="px-2 py-1 text-xs font-mono rounded border border-term-border bg-term-panel text-term-text hover:border-term-blue transition-all" title="Playback speed">
+        <option value="1200">0.5×</option>
+        <option value="600" selected>1×</option>
+        <option value="300">2×</option>
+        <option value="150">4×</option>
+      </select>
+      <button id="autoplay-btn" class="px-2 py-1 text-xs font-mono rounded border border-term-border bg-term-panel text-term-text hover:border-term-green hover:text-term-green transition-all">
+        ▶ PLAY
+      </button>
+    </div>
+  </div>
+
+  <!-- Metrics bar -->
+  <div id="metrics-bar" class="hidden flex items-center gap-6 px-4 pb-2">
+    <!-- injected by JS -->
+  </div>
+
+  <!-- Scrubber -->
+  <div id="scrubber-row" class="hidden px-4 pb-2">
+    <input type="range" id="scrubber" min="0" value="0" step="1">
+  </div>
+</header>
+
+<!-- ===================== BODY ===================== -->
+<div class="flex flex-1 min-h-0">
+
+  <!-- ========== TIMELINE PANEL (30%) ========== -->
+  <aside id="timeline-panel" class="w-[30%] min-w-[220px] max-w-[380px] flex flex-col border-r border-term-border bg-term-surface">
+    <div class="px-3 py-2 border-b border-term-border flex items-center justify-between">
+      <span class="text-xs font-mono font-semibold text-term-muted uppercase tracking-wider">Timeline</span>
+      <span id="event-counter" class="text-xs font-mono text-term-muted"></span>
+    </div>
+    <div id="timeline-list" class="flex-1 overflow-y-auto text-xs font-mono">
+      <!-- populated by JS -->
+      <div class="flex flex-col items-center justify-center h-full gap-3 text-term-muted p-4">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span class="text-center text-xs leading-relaxed">Drop a trace JSON here<br>or use the Load button</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========== MAIN DETAIL PANEL (70%) ========== -->
+  <main class="flex-1 flex flex-col min-w-0 bg-term-bg">
+
+    <!-- Tab bar -->
+    <div class="flex-none border-b border-term-border bg-term-surface px-4">
+      <div class="flex gap-0">
+        <button class="tab-btn active px-4 py-2 text-xs font-mono font-semibold text-term-muted uppercase tracking-wider" data-tab="calendars">Calendars</button>
+        <button class="tab-btn px-4 py-2 text-xs font-mono font-semibold text-term-muted uppercase tracking-wider" data-tab="context">Context</button>
+        <button class="tab-btn px-4 py-2 text-xs font-mono font-semibold text-term-muted uppercase tracking-wider" data-tab="messages">Messages</button>
+      </div>
+    </div>
+
+    <!-- Tab contents -->
+    <div class="flex-1 overflow-y-auto">
+      <div id="tab-calendars" class="tab-content p-4 animate-fade-in">
+        <div class="flex flex-col items-center justify-center h-40 text-term-muted text-sm">Load a trace to view calendars</div>
+      </div>
+      <div id="tab-context" class="tab-content hidden p-4 animate-fade-in">
+        <div class="flex flex-col items-center justify-center h-40 text-term-muted text-sm">Select an event to view context</div>
+      </div>
+      <div id="tab-messages" class="tab-content hidden p-4 animate-fade-in">
+        <div class="flex flex-col items-center justify-center h-40 text-term-muted text-sm">Select a round to view messages</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ===================== BOTTOM BAR ===================== -->
+<footer id="bottom-bar" class="flex-none border-t border-term-border bg-term-surface px-4 py-1.5 flex items-center gap-3 text-xs font-mono">
+  <button id="prev-btn" class="px-2 py-0.5 rounded border border-term-border text-term-muted hover:text-term-blue hover:border-term-blue transition-all disabled:opacity-30" title="Prev (←)">← PREV</button>
+  <button id="next-btn" class="px-2 py-0.5 rounded border border-term-border text-term-muted hover:text-term-blue hover:border-term-blue transition-all disabled:opacity-30" title="Next (→)">NEXT →</button>
+  <div class="w-px h-4 bg-term-border"></div>
+  <div id="status-phase" class="px-2 py-0.5 rounded text-[11px] font-semibold phase-badge-default">—</div>
+  <div id="status-type"  class="text-term-muted">no event selected</div>
+  <div id="status-agent" class="text-term-cyan hidden"></div>
+  <div class="ml-auto flex items-center gap-3 text-term-muted">
+    <span id="status-round">R—</span>
+    <span id="status-turn">T—</span>
+    <span id="status-seq">SEQ —</span>
+  </div>
+</footer>
+
+<!-- ===================== METRICS OVERLAY ===================== -->
+<div id="metrics-overlay" class="metrics-overlay hidden">
+  <div class="metrics-panel animate-fade-in">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-term-border">
+      <span class="font-mono font-semibold text-term-bright tracking-wide">GAME METRICS</span>
+      <button id="metrics-close" class="text-term-muted hover:text-term-red font-mono text-sm">✕ CLOSE</button>
+    </div>
+    <div id="metrics-content" class="p-6">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DROP OVERLAY ===================== -->
+<div id="drop-overlay" class="fixed inset-0 z-50 hidden bg-term-bg/90 backdrop-blur-sm flex items-center justify-center">
+  <div class="border-2 border-dashed border-term-blue rounded-xl p-16 text-center">
+    <div class="text-4xl mb-4">📂</div>
+    <div class="font-mono text-term-blue text-lg">Drop trace JSON here</div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// STATE
+// ============================================================
+const S = {
+  trace: null,         // raw trace object
+  events: [],          // trace.events with .seq added
+  currentSeq: 0,
+  activeTab: 'calendars',
+  autoplayTimer: null,
+  autoplayDelayMs: 600,
+  collapsedGroups: new Set(),
+  runTraces: [],
+};
+
+// ============================================================
+// DOM REFS
+// ============================================================
+const $ = id => document.getElementById(id);
+const timelineList  = $('timeline-list');
+const tabCalendars  = $('tab-calendars');
+const tabContext    = $('tab-context');
+const tabMessages   = $('tab-messages');
+const bottomPhase   = $('status-phase');
+const bottomType    = $('status-type');
+const bottomAgent   = $('status-agent');
+const bottomRound   = $('status-round');
+const bottomTurn    = $('status-turn');
+const bottomSeq     = $('status-seq');
+const scrubber      = $('scrubber');
+const headerMeta    = $('header-meta');
+const metricsBar    = $('metrics-bar');
+const metricsBtn    = $('metrics-btn');
+const metricsOverlay= $('metrics-overlay');
+const metricsContent= $('metrics-content');
+const metricsClose  = $('metrics-close');
+const autoplayBtn   = $('autoplay-btn');
+const autoplaySpeed = $('autoplay-speed');
+const prevBtn       = $('prev-btn');
+const nextBtn       = $('next-btn');
+const fileInput     = $('file-input');
+const eventCounter  = $('event-counter');
+const scrubberRow   = $('scrubber-row');
+const metricsBarEl  = $('metrics-bar');
+const runSelect     = $('run-select');
+const traceSelect   = $('trace-select');
+
+// ============================================================
+// TAB SWITCHING
+// ============================================================
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    S.activeTab = btn.dataset.tab;
+    ['calendars','context','messages'].forEach(t => {
+      $(`tab-${t}`).classList.toggle('hidden', t !== S.activeTab);
+    });
+    renderMainPanel();
+  });
+});
+
+// ============================================================
+// FILE LOADING
+// ============================================================
+fileInput.addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (f) readFile(f);
+  fileInput.value = '';
+});
+
+// Drag and drop
+const dropOverlay = $('drop-overlay');
+document.addEventListener('dragover', e => { e.preventDefault(); dropOverlay.classList.remove('hidden'); });
+document.addEventListener('dragleave', e => { if (!e.relatedTarget) dropOverlay.classList.add('hidden'); });
+document.addEventListener('drop', e => {
+  e.preventDefault();
+  dropOverlay.classList.add('hidden');
+  const f = e.dataTransfer.files[0];
+  if (f) readFile(f);
+});
+
+function readFile(file) {
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const text = ev.target.result;
+      // Try JSON first, then JSONL (take first line)
+      let data;
+      try { data = JSON.parse(text); }
+      catch { data = JSON.parse(text.trim().split('\n')[0]); }
+      loadTrace(data);
+    } catch(err) {
+      alert('Failed to parse file: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+}
+
+// Load trace passed from a2a-viewer hub via sessionStorage, or ?trace= param
+(async () => {
+  const pending = sessionStorage.getItem('a2a_pending_trace');
+  if (pending) {
+    sessionStorage.removeItem('a2a_pending_trace');
+    try { loadTrace(JSON.parse(pending)); return; } catch(e) { /* fall through */ }
+  }
+  const url = new URL(location.href);
+  const tracePath = url.searchParams.get('trace');
+  if (tracePath) {
+    await loadTraceUrl(tracePath);
+    await initRunSelector({ skipAutoLoad: true });
+    return;
+  }
+  await initRunSelector();
+})();
+
+function traceApiPath(runId, rel) {
+  return `/runs/${encodeURIComponent(runId)}/trace/${rel.split('/').map(encodeURIComponent).join('/')}`;
+}
+
+async function loadTraceUrl(tracePath) {
+  try {
+    const r = await fetch(tracePath);
+    if (r.status === 413) {
+      const detail = await r.json().catch(() => ({}));
+      if (detail.presigned_url) {
+        const direct = await fetch(detail.presigned_url);
+        if (!direct.ok) throw new Error(`S3 HTTP ${direct.status}`);
+        loadTrace(await direct.json());
+        return;
+      }
+      throw new Error(detail.error || `HTTP ${r.status}`);
+    }
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const data = await r.json();
+    loadTrace(data);
+  } catch(e) {
+    console.warn('Failed to load trace URL', tracePath, e);
+  }
+}
+
+async function initRunSelector({ skipAutoLoad = false } = {}) {
+  try {
+    const r = await fetch('/api/runs');
+    if (!r.ok) return;
+    const runs = await r.json();
+    if (!runs.length) return;
+    runSelect.classList.remove('hidden');
+    traceSelect.classList.remove('hidden');
+    runSelect.innerHTML = runs.map(run =>
+      `<option value="${escapeAttr(run.run_id)}">${escapeHtml(run.run_id)} (${run.trace_count})</option>`
+    ).join('');
+    const url = new URL(location.href);
+    const requestedRun = url.searchParams.get('run');
+    if (requestedRun && runs.some(run => run.run_id === requestedRun)) {
+      runSelect.value = requestedRun;
+    }
+    runSelect.addEventListener('change', () => loadRunTraces(runSelect.value, { autoLoad: true }));
+    traceSelect.addEventListener('change', () => {
+      const selected = S.runTraces.find(t => t.relative_key === traceSelect.value);
+      if (!selected) return;
+      history.replaceState(null, '', `/viewer.html?run=${encodeURIComponent(runSelect.value)}&traceKey=${encodeURIComponent(selected.relative_key)}`);
+      loadTraceUrl(traceApiPath(runSelect.value, selected.relative_key));
+    });
+    await loadRunTraces(runSelect.value, { autoLoad: !skipAutoLoad });
+  } catch(e) {
+    console.warn('Run selector unavailable', e);
+  }
+}
+
+async function loadRunTraces(runId, { autoLoad = false } = {}) {
+  if (!runId) return;
+  const r = await fetch(`/api/runs/${encodeURIComponent(runId)}/traces`);
+  if (!r.ok) return;
+  S.runTraces = await r.json();
+  traceSelect.innerHTML = S.runTraces.map(trace => {
+    const label = `${trace.experiment_run_id || trace.relative_key} · ${trace.uploader || ''}`;
+    return `<option value="${escapeAttr(trace.relative_key)}">${escapeHtml(label)}</option>`;
+  }).join('');
+  const url = new URL(location.href);
+  const requestedTraceKey = url.searchParams.get('traceKey');
+  if (requestedTraceKey && S.runTraces.some(t => t.relative_key === requestedTraceKey)) {
+    traceSelect.value = requestedTraceKey;
+  }
+  if (autoLoad && S.runTraces.length) {
+    const selected = S.runTraces.find(t => t.relative_key === traceSelect.value) || S.runTraces[0];
+    traceSelect.value = selected.relative_key;
+    history.replaceState(null, '', `/viewer.html?run=${encodeURIComponent(runId)}&traceKey=${encodeURIComponent(selected.relative_key)}`);
+    await loadTraceUrl(traceApiPath(runId, selected.relative_key));
+  }
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[ch]));
+}
+
+function escapeAttr(value) {
+  return escapeHtml(value);
+}
+
+// ============================================================
+// LOAD TRACE
+// ============================================================
+function loadTrace(data) {
+  S.trace = data;
+  // Add seq (index) and normalize event type casing for traces emitted by
+  // different runners/viewer bridges.
+  S.events = (data.events || []).map((ev, i) => ({
+    ...ev,
+    original_type: ev.original_type || ev.type,
+    type: normalizeEventType(ev.type),
+    seq: i,
+  }));
+  S.currentSeq = 0;
+
+  buildTimeline();
+  updateScrubber();
+  renderHeaderMeta();
+  renderMetricsBar();
+  renderMainPanel();
+  updateBottomBar();
+  updateNavButtons();
+
+  // Show UI chrome
+  scrubberRow.classList.remove('hidden');
+  metricsBarEl.classList.remove('hidden');
+  metricsBtn.classList.remove('hidden');
+}
+
+function normalizeEventType(type) {
+  return String(type || '').trim().toLowerCase();
+}
+
+function eventPhase(ev) {
+  const phase = ev?.data?.phase;
+  if (phase) return phase;
+  if (ev?.type === 'reflection_start' || ev?.type === 'reflection_end') return 'REFLECTION';
+  return 'GAME_START';
+}
+
+// ============================================================
+// HEADER META
+// ============================================================
+function renderHeaderMeta() {
+  const t = S.trace;
+  const cfg = t.config || {};
+  const metrics = t.metrics || {};
+  const gameId = (t.game_id || '').slice(0,8);
+  const pills = [
+    { label: 'ID',       val: gameId },
+    { label: 'SEED',     val: cfg.seed ?? S.events.find(e=>e.type==='game_start')?.data?.scenario_seed ?? '—' },
+    { label: 'AGENTS',   val: cfg.num_agents ?? S.events.find(e=>e.type==='game_start')?.data?.num_agents ?? '—' },
+    { label: 'SLOTS',    val: cfg.num_slots ?? S.events.find(e=>e.type==='game_start')?.data?.num_slots ?? '—' },
+    { label: 'ROUNDS',   val: (t.final_state?.round_outcomes || []).length || '—' },
+    { label: 'EVENTS',   val: S.events.length },
+  ];
+  headerMeta.innerHTML = pills.map(p =>
+    `<span class="flex items-center gap-1">
+      <span class="text-term-muted">${esc(p.label)}</span>
+      <span class="text-term-bright font-semibold">${esc(String(p.val))}</span>
+    </span><span class="text-term-border last:hidden">·</span>`
+  ).join('');
+}
+
+function renderMetricsBar() {
+  const m = S.trace?.metrics || {};
+  const gs = S.events.find(e => e.type === 'game_start')?.data || {};
+  const metrics = [
+    { label: 'COORD', val: pct(m.coordination_rate), color: m.coordination_rate >= 1 ? 'text-term-green' : m.coordination_rate >= 0.5 ? 'text-term-amber' : 'text-term-red' },
+    { label: 'EFF',   val: msgPerRound(m),            color: 'text-term-blue' },
+    { label: 'FAIR',  val: pct(m.fairness),           color: 'text-term-cyan' },
+    { label: 'MEET',  val: m.meetings_scheduled ?? '—', color: 'text-term-text' },
+    { label: 'REAL',  val: m.realized_cost ?? '—',    color: 'text-term-amber' },
+    { label: 'OPT',   val: m.optimal_cost ?? gs.optimal_cost ?? '—', color: 'text-term-green' },
+    { label: 'GREEDY',val: m.greedy_cost ?? gs.greedy_cost ?? '—',   color: 'text-term-muted' },
+  ];
+  metricsBar.innerHTML = metrics.map(m =>
+    `<div class="flex items-center gap-1 text-xs font-mono">
+      <span class="text-term-muted">${esc(m.label)}</span>
+      <span class="font-semibold ${m.color}">${esc(String(m.val))}</span>
+    </div>`
+  ).join('<span class="text-term-border">·</span>');
+}
+
+function pct(val) {
+  if (val == null || val === '') return '—';
+  return (Number(val) * 100).toFixed(0) + '%';
+}
+
+function msgPerRound(metrics) {
+  const rounds = S.trace?.final_state?.round_outcomes?.length
+    || new Set(S.events.filter(e => e.type === 'round_start').map(e => e.data?.round)).size;
+  const totalMessages = cheapTalkMessageCount(metrics);
+  const value = Number.isFinite(totalMessages) && rounds > 0
+    ? totalMessages / rounds
+    : Number(metrics?.efficiency);
+  if (value === Infinity) return '∞ msg/rnd';
+  if (!Number.isFinite(value)) return '—';
+  return `${value.toFixed(value < 10 ? 1 : 0)} msg/rnd`;
+}
+
+function cheapTalkMessageCount(metrics = {}) {
+  const totalCheapTalk = Number(metrics?.total_cheap_talk_messages);
+  if (Number.isFinite(totalCheapTalk)) return totalCheapTalk;
+  const totalDms = Number(metrics?.total_dms_sent);
+  const totalGroup = Number(metrics?.total_groupchat_messages_sent);
+  if (Number.isFinite(totalDms) || Number.isFinite(totalGroup)) {
+    return (Number.isFinite(totalDms) ? totalDms : 0) + (Number.isFinite(totalGroup) ? totalGroup : 0);
+  }
+  return NaN;
+}
+
+const MESSAGE_EVENT_TYPES = new Set(['dm_sent', 'participant_groupchat_sent', 'all_groupchat_sent', 'groupchat_sent']);
+const MESSAGE_OR_REJECTION_EVENT_TYPES = new Set([...MESSAGE_EVENT_TYPES, 'dm_rejected']);
+
+function isMessageEvent(ev, { includeRejected = false } = {}) {
+  return (includeRejected ? MESSAGE_OR_REJECTION_EVENT_TYPES : MESSAGE_EVENT_TYPES).has(ev?.type);
+}
+
+function messageKind(ev) {
+  if (ev.type === 'dm_rejected') return 'DM REJECTED';
+  if (ev.type === 'participant_groupchat_sent') return 'PARTICIPANT CHAT';
+  if (ev.type === 'all_groupchat_sent' || ev.type === 'groupchat_sent') return 'ALL CHAT';
+  return 'DM';
+}
+
+function messageRecipientLabel(ev) {
+  const d = ev.data || {};
+  if (ev.type === 'dm_sent' || ev.type === 'dm_rejected') return `A${d.to_agent ?? '?'}`;
+  const recipients = Array.isArray(d.to_agents) ? d.to_agents : [];
+  if (!recipients.length) return 'group';
+  return recipients.map(a => `A${a}`).join(', ');
+}
+
+// ============================================================
+// TIMELINE
+// ============================================================
+const EVENT_TYPE_SHORT = {
+  game_start:       'GAME_START',
+  agent_registered: 'AGENT_REG',
+  round_start:      'ROUND_START',
+  turn_start:       'TURN',
+  turn_end:         'TURN_END',
+  dm_sent:          'DM',
+  dm_rejected:      'DM_REJ',
+  participant_groupchat_sent: 'PCHAT',
+  all_groupchat_sent: 'ACHAT',
+  groupchat_sent:   'CHAT',
+  decide_start:     'DECIDE',
+  decide_end:       'DECIDE_END',
+  batch_applied:    'BATCH_OK',
+  batch_rejected:   'BATCH_REJ',
+  decision_failed:  'FAIL',
+  reflection_start: 'REFLECT',
+  reflection_end:   'BELIEFS',
+  resolution:       'RESOLVE',
+  game_end:         'GAME_END',
+};
+
+function phaseClass(phase) {
+  if (!phase) return 'phase-badge-default';
+  return `phase-badge-${phase.replace(/[^A-Z_]/g,'') || 'default'}`;
+}
+function phaseDot(phase) {
+  if (phase === 'CHEAP_TALK')  return 'bg-term-blue';
+  if (phase === 'DECISION')    return 'bg-term-amber';
+  if (phase === 'RESOLUTION')  return 'bg-term-green';
+  if (phase === 'REFLECTION')  return 'bg-term-cyan';
+  return 'bg-term-muted';
+}
+function phaseTextColor(phase) {
+  if (phase === 'CHEAP_TALK')  return 'text-term-blue';
+  if (phase === 'DECISION')    return 'text-term-amber';
+  if (phase === 'RESOLUTION')  return 'text-term-green';
+  if (phase === 'REFLECTION')  return 'text-term-cyan';
+  return 'text-term-muted';
+}
+
+function buildTimeline() {
+  const events = S.events;
+  if (!events.length) return;
+
+  // Group events by round + phase
+  const groups = [];
+  let curGroup = null;
+
+  for (const ev of events) {
+    const d = ev.data || {};
+    const phase = eventPhase(ev);
+    const groupKey = `${d.round ?? -1}|${phase}`;
+    if (!curGroup || curGroup.key !== groupKey) {
+      curGroup = { key: groupKey, round: d.round, phase, events: [] };
+      groups.push(curGroup);
+    }
+    curGroup.events.push(ev);
+  }
+
+  eventCounter.textContent = `${events.length} events`;
+
+  let html = '';
+  for (const group of groups) {
+    const gid = `g_${group.key.replace(/[^a-z0-9_]/gi,'_')}`;
+    const phase = group.phase || 'GAME_START';
+    const dotClass = phaseDot(phase);
+    const phColorClass = phaseTextColor(phase);
+    const roundLabel = group.round == null || group.round < 0 ? '' : `R${group.round}`;
+    html += `<div class="phase-group-header flex items-center gap-2 px-3 py-1 text-[10px] font-mono font-semibold text-term-muted uppercase tracking-wider sticky top-0 bg-term-surface z-10 border-b border-term-border/50" data-gid="${esc(gid)}">
+      <span class="w-1.5 h-1.5 rounded-full ${dotClass} shrink-0"></span>
+      <span class="${phColorClass}">${esc(phase)}</span>
+      ${roundLabel ? `<span class="text-term-muted/60">${esc(roundLabel)}</span>` : ''}
+      <span class="ml-auto text-term-border/80">▾</span>
+    </div>`;
+    html += `<div class="group-events" id="${gid}">`;
+    for (const ev of group.events) {
+      const d = ev.data || {};
+      const short = EVENT_TYPE_SHORT[ev.type] || ev.type.toUpperCase();
+      const agentLabel = d.agent_id != null ? `<span class="text-term-cyan">A${d.agent_id}</span>` : '';
+      const extra = eventTimelineExtra(ev);
+      html += `<div class="event-item phase-${phase} flex items-start gap-2 px-3 py-1.5 border-b border-term-border/30"
+          data-seq="${ev.seq}"
+          title="${esc(ev.original_type || ev.type)}">
+        <span class="shrink-0 mt-0.5 text-term-muted/50 w-5 text-right">${ev.seq}</span>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-1.5">
+            <span class="text-[11px] font-semibold ${phColorClass}">${esc(short)}</span>
+            ${agentLabel}
+          </div>
+          ${extra ? `<div class="text-term-muted/70 text-[10px] truncate">${extra}</div>` : ''}
+        </div>
+      </div>`;
+    }
+    html += '</div>';
+  }
+
+  timelineList.innerHTML = html;
+
+  // Click handlers
+  timelineList.querySelectorAll('.event-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const seq = Number(el.dataset.seq);
+      jumpToSeq(seq);
+    });
+  });
+
+  // Group collapse
+  timelineList.querySelectorAll('.phase-group-header').forEach(el => {
+    el.addEventListener('click', () => {
+      const gid = el.dataset.gid;
+      const content = $(`${gid}`);
+      if (!content) return;
+      if (S.collapsedGroups.has(gid)) {
+        S.collapsedGroups.delete(gid);
+        content.style.display = '';
+        el.querySelector('span:last-child').textContent = '▾';
+      } else {
+        S.collapsedGroups.add(gid);
+        content.style.display = 'none';
+        el.querySelector('span:last-child').textContent = '▸';
+      }
+    });
+  });
+}
+
+function eventTimelineExtra(ev) {
+  const d = ev.data || {};
+  switch(ev.type) {
+    case 'dm_sent': return `→A${d.to_agent}: ${esc(String(d.content||'').slice(0,40))}`;
+    case 'participant_groupchat_sent':
+    case 'all_groupchat_sent':
+    case 'groupchat_sent':
+      return `→${esc(messageRecipientLabel(ev))}: ${esc(String(d.content||'').slice(0,40))}`;
+    case 'dm_rejected': return `✗ ${esc(String(d.reason||'').slice(0,40))}`;
+    case 'resolution': return `M${d.meeting_id} ${d.coordinated ? '✓ COORD' : '✗ MISS'}`;
+    case 'batch_applied': return `${(d.actions||[]).length} action(s)`;
+    case 'batch_rejected': return `✗ ${esc(String(d.conflict_description||'').slice(0,35))}`;
+    case 'reflection_start': return `A${d.agent_id ?? '?'} about A${d.target_agent_id ?? '?'} prompt`;
+    case 'reflection_end': {
+      const s = summarizeBeliefs(d.estimates || []);
+      return `A${d.agent_id ?? '?'} about A${d.target_agent_id ?? '?'} · ${s.free} free / ${s.busy} busy / ${s.zero} neutral`;
+    }
+    case 'game_end': return `coord=${pct(d.coordination_rate)}`;
+    default: return '';
+  }
+}
+
+function summarizeBeliefs(estimates) {
+  let free = 0, busy = 0, zero = 0;
+  for (const e of estimates || []) {
+    const delta = Number(e.belief_delta_occupied ?? e.delta ?? e.value ?? 0);
+    if (delta > 0) busy++;
+    else if (delta < 0) free++;
+    else zero++;
+  }
+  return { free, busy, zero };
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function jumpToSeq(seq) {
+  seq = Math.max(0, Math.min(seq, S.events.length - 1));
+  S.currentSeq = seq;
+  highlightTimelineItem(seq);
+  scrubber.value = seq;
+  renderMainPanel();
+  updateBottomBar();
+  updateNavButtons();
+}
+
+function highlightTimelineItem(seq) {
+  timelineList.querySelectorAll('.event-item').forEach(el => {
+    el.classList.toggle('selected', Number(el.dataset.seq) === seq);
+  });
+  const selected = timelineList.querySelector(`.event-item[data-seq="${seq}"]`);
+  if (selected) selected.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+scrubber.addEventListener('input', () => jumpToSeq(Number(scrubber.value)));
+
+function updateScrubber() {
+  scrubber.max = Math.max(0, S.events.length - 1);
+  scrubber.value = S.currentSeq;
+}
+
+prevBtn.addEventListener('click', () => jumpToSeq(S.currentSeq - 1));
+nextBtn.addEventListener('click', () => jumpToSeq(S.currentSeq + 1));
+
+function updateNavButtons() {
+  prevBtn.disabled = S.currentSeq <= 0;
+  nextBtn.disabled = S.currentSeq >= S.events.length - 1;
+}
+
+// ============================================================
+// KEYBOARD
+// ============================================================
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  switch(e.key) {
+    case 'ArrowLeft':  e.preventDefault(); jumpToSeq(S.currentSeq - 1); break;
+    case 'ArrowRight': e.preventDefault(); jumpToSeq(S.currentSeq + 1); break;
+    case '[': jumpRound(-1); break;
+    case ']': jumpRound(+1); break;
+    case '1': clickTab('calendars'); break;
+    case '2': clickTab('context'); break;
+    case '3': clickTab('messages'); break;
+    case ' ': e.preventDefault(); toggleAutoplay(); break;
+    case 'Escape': closeMetrics(); break;
+  }
+});
+
+function clickTab(name) {
+  const btn = document.querySelector(`.tab-btn[data-tab="${name}"]`);
+  if (btn) btn.click();
+}
+
+function jumpRound(delta) {
+  const cur = S.events[S.currentSeq]?.data?.round ?? 0;
+  const target = cur + delta;
+  const ev = S.events.find(e => (e.data?.round ?? -99) === target && e.type === 'round_start');
+  if (ev) jumpToSeq(ev.seq);
+}
+
+// ============================================================
+// AUTOPLAY
+// ============================================================
+autoplayBtn.addEventListener('click', toggleAutoplay);
+autoplaySpeed.addEventListener('change', () => {
+  S.autoplayDelayMs = Number(autoplaySpeed.value) || 600;
+  if (S.autoplayTimer) {
+    stopAutoplay({ keepButtonState: true });
+    startAutoplay();
+  }
+});
+
+function toggleAutoplay() {
+  if (S.autoplayTimer) {
+    stopAutoplay();
+  } else {
+    startAutoplay();
+  }
+}
+
+function startAutoplay() {
+  if (S.currentSeq >= S.events.length - 1) jumpToSeq(0);
+  autoplayBtn.textContent = '⏸ PAUSE';
+  autoplayBtn.classList.add('text-term-amber','border-term-amber');
+  S.autoplayTimer = setInterval(() => {
+    if (S.currentSeq >= S.events.length - 1) { stopAutoplay(); return; }
+    jumpToSeq(S.currentSeq + 1);
+  }, S.autoplayDelayMs);
+}
+
+function stopAutoplay(options = {}) {
+  clearInterval(S.autoplayTimer);
+  S.autoplayTimer = null;
+  if (options.keepButtonState) return;
+  autoplayBtn.textContent = '▶ PLAY';
+  autoplayBtn.classList.remove('text-term-amber','border-term-amber');
+}
+
+// ============================================================
+// BOTTOM BAR
+// ============================================================
+function updateBottomBar() {
+  const ev = S.events[S.currentSeq];
+  if (!ev) return;
+  const d = ev.data || {};
+  const phase = eventPhase(ev);
+  bottomPhase.className = `px-2 py-0.5 rounded text-[11px] font-semibold ${phaseClass(phase)}`;
+  bottomPhase.textContent = phase;
+  bottomType.textContent = ev.type;
+  if (d.agent_id != null) {
+    bottomAgent.textContent = `Agent ${d.agent_id}`;
+    bottomAgent.classList.remove('hidden');
+  } else {
+    bottomAgent.classList.add('hidden');
+  }
+  bottomRound.textContent = `R${d.round ?? '—'}`;
+  bottomTurn.textContent  = `T${d.turn ?? '—'}`;
+  bottomSeq.textContent   = `SEQ ${ev.seq}`;
+}
+
+// ============================================================
+// MAIN PANEL ROUTER
+// ============================================================
+function renderMainPanel() {
+  if (!S.trace) return;
+  if (S.activeTab === 'calendars') renderCalendarsTab();
+  else if (S.activeTab === 'context') renderContextTab();
+  else if (S.activeTab === 'messages') renderMessagesTab();
+}
+
+// ============================================================
+// CALENDAR STATE RECONSTRUCTION
+// ============================================================
+function parseCalendarRender(renderStr, numSlots) {
+  // Returns array of slot objects: {type:'free'|'errand'|'blocked'|'meeting', id, cost}
+  if (!renderStr) return Array(numSlots).fill(null).map(() => ({ type: 'free' }));
+  const slots = {};
+  const lines = renderStr.split('\n');
+  for (const line of lines) {
+    // "Slot  4: [FREE]"
+    // "Slot  0: Errand #8 (cost=1)"
+    // "Slot  1: Blocked #3 (cost=2)"
+    // "Slot  2: Meeting M1" or "Slot  2: Meeting #1"
+    const m = line.match(/Slot\s+(\d+):\s*(.*)/);
+    if (!m) continue;
+    const slotIdx = parseInt(m[1]);
+    const rest = m[2].trim();
+    if (rest === '[FREE]' || rest === 'FREE') {
+      slots[slotIdx] = { type: 'free' };
+    } else if (/^Blocked/i.test(rest)) {
+      const bm = rest.match(/[#]?(\d+).*cost=(\d+)/);
+      slots[slotIdx] = { type: 'blocked', id: bm ? bm[1] : '?', cost: bm ? parseInt(bm[2]) : 0 };
+    } else if (/^Errand/i.test(rest)) {
+      const em = rest.match(/[#]?(\d+).*cost=(\d+)/);
+      slots[slotIdx] = { type: 'errand', id: em ? em[1] : '?', cost: em ? parseInt(em[2]) : 0 };
+    } else if (/^Meeting/i.test(rest)) {
+      const mm = rest.match(/[M#](\d+)/i);
+      slots[slotIdx] = { type: 'meeting', id: mm ? mm[1] : '?' };
+    } else {
+      slots[slotIdx] = { type: 'free', label: rest };
+    }
+  }
+  const arr = [];
+  for (let i = 0; i < (numSlots || 16); i++) {
+    arr.push(slots[i] || { type: 'free' });
+  }
+  return arr;
+}
+
+function getNumSlots() {
+  const gs = S.events.find(e => e.type === 'game_start');
+  return gs?.data?.num_slots || S.trace?.config?.num_slots || 16;
+}
+
+function getNumAgents() {
+  const gs = S.events.find(e => e.type === 'game_start');
+  return gs?.data?.num_agents || S.trace?.config?.num_agents || 2;
+}
+
+function reconstructCalendars(upToSeq) {
+  const numSlots = getNumSlots();
+  const numAgents = getNumAgents();
+
+  // Initialize from final_state if available (as fallback) or from turn_start events
+  // Start: all free
+  const cals = [];
+  for (let a = 0; a < numAgents; a++) {
+    cals.push(Array(numSlots).fill(null).map(() => ({ type: 'free' })));
+  }
+
+  // Use agent_registered events as the authoritative initial calendar state
+  for (const ev of S.events) {
+    if (ev.seq > upToSeq) break;
+    if (ev.type === 'agent_registered') {
+      const d = ev.data || {};
+      if (d.agent_id != null && d.calendar_render) {
+        cals[d.agent_id] = parseCalendarRender(d.calendar_render, numSlots);
+      }
+    }
+  }
+
+  // Replay batch_applied events
+  for (const ev of S.events) {
+    if (ev.seq > upToSeq) break;
+    if (ev.type === 'batch_applied') {
+      const d = ev.data || {};
+      if (d.agent_id != null && d.calendar_render_after) {
+        cals[d.agent_id] = parseCalendarRender(d.calendar_render_after, numSlots);
+      }
+    }
+  }
+
+  // If at a turn_start or decide_start with calendar data, use that as source of truth
+  const curEv = S.events[upToSeq];
+  if (curEv?.type === 'turn_start' && curEv.data?.calendar_render && curEv.data?.agent_id != null) {
+    cals[curEv.data.agent_id] = parseCalendarRender(curEv.data.calendar_render, numSlots);
+  }
+  if (curEv?.type === 'decide_start' && curEv.data?.calendar_snapshot_render && curEv.data?.agent_id != null) {
+    cals[curEv.data.agent_id] = parseCalendarRender(curEv.data.calendar_snapshot_render, numSlots);
+  }
+
+  return cals;
+}
+
+function getConflictInfo(upToSeq) {
+  // Find resolution events up to this seq
+  const conflicts = {};
+  const coordinated = {};
+  for (const ev of S.events) {
+    if (ev.seq > upToSeq) break;
+    if (ev.type === 'resolution') {
+      const d = ev.data || {};
+      if (d.slot_conflicts) {
+        for (const [agentSlot, info] of Object.entries(d.slot_conflicts)) {
+          conflicts[agentSlot] = true;
+        }
+      }
+      if (d.coordinated && d.per_agent_slot) {
+        for (const [aid, slot] of Object.entries(d.per_agent_slot)) {
+          coordinated[`${aid}:${slot}`] = d.meeting_id;
+        }
+      }
+    }
+  }
+  return { conflicts, coordinated };
+}
+
+// ============================================================
+// TAB 1: CALENDARS
+// ============================================================
+function renderCalendarsTab() {
+  const numSlots  = getNumSlots();
+  const numAgents = getNumAgents();
+  const cals = reconstructCalendars(S.currentSeq);
+  const { conflicts, coordinated } = getConflictInfo(S.currentSeq);
+
+  // Per-agent stats
+  function agentStats(cal) {
+    let free = 0, errands = 0, blocked = 0, meetings = 0, cost = 0;
+    for (const s of cal) {
+      if (s.type === 'free') free++;
+      else if (s.type === 'errand') { errands++; cost += s.cost || 0; }
+      else if (s.type === 'blocked') { blocked++; cost += s.cost || 0; }
+      else if (s.type === 'meeting') meetings++;
+    }
+    return { free, errands, blocked, meetings, cost };
+  }
+
+  const finalState = S.trace?.final_state || {};
+  const perAgentCost = finalState.per_agent_cost || [];
+
+  let html = `<div class="space-y-4">`;
+  for (let a = 0; a < numAgents; a++) {
+    const cal = cals[a] || [];
+    const stats = agentStats(cal);
+    const agentCost = perAgentCost[a];
+
+    html += `<div class="rounded-lg border border-term-border overflow-hidden">`;
+    // Agent header
+    html += `<div class="flex items-center justify-between px-4 py-2 bg-term-panel border-b border-term-border">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-term-cyan shrink-0"></span>
+        <span class="font-mono font-semibold text-term-bright text-sm">Agent ${a}</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-mono text-term-muted">
+        <span><span class="text-term-text">${stats.free}</span> free</span>
+        <span><span class="text-term-amber">${stats.errands}</span> errands</span>
+        <span><span class="text-term-red">${stats.blocked}</span> blocked</span>
+        <span><span class="text-term-green">${stats.meetings}</span> meetings</span>
+        <span class="text-term-amber font-semibold">cost ${stats.cost}${agentCost != null ? ` / final ${agentCost}` : ''}</span>
+      </div>
+    </div>`;
+
+    // Calendar grid
+    html += `<div class="overflow-x-auto bg-term-bg">`;
+    html += `<div class="flex" style="min-width:${numSlots * 68 + 4}px">`;
+    for (let s = 0; s < numSlots; s++) {
+      const slot = cal[s] || { type: 'free' };
+      const key = `${a}:${s}`;
+      let cellClass = 'slot-cell ';
+      let content = '';
+      let label = '';
+
+      if (slot.type === 'meeting') {
+        cellClass += 'slot-meeting';
+        label = `M${slot.id}`;
+        content = `<div class="text-term-green font-semibold text-[11px]">Meeting</div><div class="text-term-green text-[10px]">M${slot.id}</div>`;
+        if (coordinated[key]) cellClass += ' slot-coordinated';
+      } else if (slot.type === 'errand') {
+        cellClass += 'slot-errand';
+        label = `E#${slot.id}`;
+        content = `<div class="text-term-amber font-semibold text-[11px]">E#${esc(String(slot.id))}</div><div class="text-term-amber/70 text-[10px]">cost=${slot.cost}</div>`;
+        if (conflicts[key]) cellClass += ' slot-conflict';
+      } else if (slot.type === 'blocked') {
+        cellClass += 'slot-blocked';
+        label = `B#${slot.id}`;
+        content = `<div class="text-term-red font-semibold text-[11px]">Blocked</div><div class="text-term-red/80 text-[10px]">#${esc(String(slot.id))} · cost=${slot.cost}</div>`;
+        if (conflicts[key]) cellClass += ' slot-conflict';
+      } else {
+        cellClass += 'slot-free';
+        content = `<div class="text-term-muted/40 text-[11px]">—</div>`;
+      }
+
+      html += `<div class="${cellClass} flex-none w-16 h-16 border-r border-term-border/40 p-1.5 flex flex-col">
+        <div class="text-[10px] font-mono text-term-muted/50 mb-1">S${s}</div>
+        ${content}
+      </div>`;
+    }
+    html += `</div></div></div>`;
+  }
+  html += renderCalendarMessageStream(S.currentSeq);
+  html += renderRoundReflectionPanel(S.currentSeq);
+  html += renderCalendarNetworkGraph(S.currentSeq);
+  html += `</div>`;
+  tabCalendars.innerHTML = html;
+  const stream = tabCalendars.querySelector('[data-calendar-message-stream]');
+  if (stream) stream.scrollTop = stream.scrollHeight;
+}
+
+function renderCalendarMessageStream(upToSeq) {
+  const curRound = S.events[upToSeq]?.data?.round;
+  const messageEvents = S.events.filter(e => {
+    if (e.seq > upToSeq) return false;
+    if (!isMessageEvent(e, { includeRejected: true })) return false;
+    return curRound == null || curRound < 0 || e.data?.round === curRound;
+  });
+  const roundLabel = curRound == null || curRound < 0 ? 'All rounds' : `Round ${curRound}`;
+
+  let html = `<div class="rounded-lg border border-term-border overflow-hidden">
+    <div class="flex items-center justify-between px-4 py-2 bg-term-panel border-b border-term-border">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-term-blue shrink-0"></span>
+        <span class="font-mono font-semibold text-term-bright text-sm">Message Stream</span>
+      </div>
+      <div class="text-xs font-mono text-term-muted">${esc(roundLabel)} · ${messageEvents.length} shown</div>
+    </div>
+    <div class="bg-term-bg max-h-56 overflow-y-auto" data-calendar-message-stream>`;
+
+  if (!messageEvents.length) {
+    html += `<div class="px-4 py-5 text-sm text-term-muted font-mono">No messages yet</div>`;
+  } else {
+    for (const msg of messageEvents) {
+      const d = msg.data || {};
+      const rejected = msg.type === 'dm_rejected';
+      html += `<div class="px-4 py-2 border-b border-term-border/40 ${rejected ? 'bg-term-redDim/10' : ''}">
+        <div class="flex items-center gap-2 text-[10px] font-mono mb-1">
+          <span class="${rejected ? 'text-term-red' : 'text-term-blue'} font-semibold">${esc(messageKind(msg))}</span>
+          <span class="text-term-cyan">A${d.from_agent ?? '?'}</span>
+          <span class="text-term-muted">→</span>
+          <span class="text-term-cyan">${esc(messageRecipientLabel(msg))}</span>
+          ${d.meeting_id != null ? `<span class="text-term-muted">M${d.meeting_id}</span>` : ''}
+          <span class="ml-auto text-term-muted/60">seq=${msg.seq} · turn=${d.turn ?? '—'}</span>
+        </div>
+        <div class="text-xs font-mono text-term-text leading-relaxed">${esc(String(d.content || ''))}</div>
+        ${rejected && d.reason ? `<div class="text-xs font-mono text-term-red mt-1">Reason: ${esc(d.reason)}</div>` : ''}
+      </div>`;
+    }
+  }
+
+  html += `</div></div>`;
+  return html;
+}
+
+function renderRoundReflectionPanel(upToSeq) {
+  const curRound = S.events[upToSeq]?.data?.round;
+  const reflections = S.events.filter(e =>
+    e.seq <= upToSeq
+    && e.type === 'reflection_end'
+    && (curRound == null || curRound < 0 || e.data?.round === curRound)
+  );
+  if (!reflections.length) return '';
+
+  const byReporter = new Map();
+  for (const ev of reflections) {
+    const d = ev.data || {};
+    const reporter = d.agent_id ?? '?';
+    if (!byReporter.has(reporter)) byReporter.set(reporter, []);
+    byReporter.get(reporter).push(ev);
+  }
+
+  let html = `<div class="rounded-lg border border-term-border overflow-hidden">
+    <div class="flex items-center justify-between px-4 py-2 bg-term-panel border-b border-term-border">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-term-cyan shrink-0"></span>
+        <span class="font-mono font-semibold text-term-bright text-sm">Round Belief Reflections</span>
+      </div>
+      <div class="text-xs font-mono text-term-muted">${reflections.length} judgement${reflections.length === 1 ? '' : 's'}</div>
+    </div>
+    <div class="bg-term-bg p-3 space-y-3">`;
+
+  for (const [reporter, events] of byReporter.entries()) {
+    html += `<div class="border border-term-border/50 rounded overflow-hidden">
+      <div class="px-3 py-2 bg-term-surface border-b border-term-border/50 text-xs font-mono text-term-cyan font-semibold">Agent ${esc(String(reporter))}'s beliefs</div>
+      <div class="p-3 grid gap-3 lg:grid-cols-2">`;
+    for (const ev of events) {
+      const d = ev.data || {};
+      html += renderBeliefCard(d, { compact: true, seq: ev.seq });
+    }
+    html += `</div></div>`;
+  }
+
+  html += `</div></div>`;
+  return html;
+}
+
+function renderBeliefCard(data, { compact = false, seq = null } = {}) {
+  const estimates = normalizeBeliefEstimates(data.estimates || [], getNumSlots());
+  const summary = summarizeBeliefs(estimates);
+  const title = `A${data.agent_id ?? '?'} → A${data.target_agent_id ?? '?'}`;
+  const seqLink = seq == null ? '' : `<button class="text-[10px] font-mono text-term-blue hover:text-term-cyan" onclick="jumpToSeq(${Number(seq)})">seq=${Number(seq)}</button>`;
+  return `<div class="border border-term-border/50 rounded bg-term-surface overflow-hidden">
+    <div class="flex items-center justify-between gap-2 px-3 py-2 bg-term-panel border-b border-term-border/50">
+      <div>
+        <div class="text-xs font-mono font-semibold text-term-bright">${esc(title)}</div>
+        <div class="text-[10px] font-mono text-term-muted">${summary.free} more free · ${summary.busy} more occupied · ${summary.zero} no update</div>
+      </div>
+      ${seqLink}
+    </div>
+    <div class="p-3">
+      ${renderBeliefGrid(estimates, compact)}
+    </div>
+  </div>`;
+}
+
+function normalizeBeliefEstimates(estimates, numSlots) {
+  const bySlot = new Map();
+  for (const raw of estimates || []) {
+    const slot = Number(raw.slot);
+    if (!Number.isFinite(slot)) continue;
+    bySlot.set(slot, raw);
+  }
+  const slots = [];
+  for (let i = 0; i < numSlots; i++) {
+    slots.push(bySlot.get(i) || { slot: i, belief_delta_occupied: 0 });
+  }
+  return slots;
+}
+
+function renderBeliefGrid(estimates, compact = false) {
+  const cells = estimates.map(e => {
+    const delta = Number(e.belief_delta_occupied ?? e.delta ?? e.value ?? 0);
+    const cls = delta > 0 ? 'belief-cell-busy' : delta < 0 ? 'belief-cell-free' : 'belief-cell-zero';
+    const busyProb = Number(e.probability_busy);
+    const freeProb = Number(e.probability_free);
+    const probText = Number.isFinite(busyProb) && Number.isFinite(freeProb)
+      ? `busy ${pct(busyProb)}`
+      : '';
+    const label = delta > 0 ? `+${delta}` : String(delta);
+    return `<div class="belief-cell ${cls}" title="Slot ${e.slot}: delta=${delta}${probText ? `, ${probText}` : ''}">
+      <div class="belief-slot-label">S${esc(String(e.slot))}</div>
+      <div class="belief-score">${esc(label)}</div>
+      ${compact ? '' : `<div class="belief-prob">${esc(probText)}</div>`}
+    </div>`;
+  }).join('');
+  return `<div class="belief-grid">${cells}</div>`;
+}
+
+function renderCalendarNetworkGraph(upToSeq) {
+  const numAgents = getNumAgents();
+  const curEv = S.events[upToSeq];
+  const curRound = curEv?.data?.round;
+  const curTurn = curEv?.data?.turn;
+  const activeAgent = curEv?.data?.agent_id;
+  const activeEdges = new Set();
+
+  for (const ev of S.events) {
+    if (ev.seq > upToSeq) break;
+    if (!isMessageEvent(ev)) continue;
+    const d = ev.data || {};
+    if (d.round !== curRound || d.turn !== curTurn) continue;
+    if (activeAgent == null || Number(d.from_agent) !== Number(activeAgent)) continue;
+    const from = Number(d.from_agent);
+    const recipients = ev.type === 'dm_sent'
+      ? [Number(d.to_agent)]
+      : (Array.isArray(d.to_agents) ? d.to_agents.map(Number) : []);
+    for (const to of recipients) {
+      if (!Number.isFinite(from) || !Number.isFinite(to)) continue;
+      activeEdges.add([from, to].sort((a, b) => a - b).join(':'));
+    }
+  }
+
+  const width = 220;
+  const height = 170;
+  const cx = width / 2;
+  const cy = 78;
+  const radius = Math.min(56, 22 + numAgents * 7);
+  const nodes = Array.from({ length: numAgents }, (_, i) => {
+    const angle = -Math.PI / 2 + (Math.PI * 2 * i) / Math.max(numAgents, 1);
+    return {
+      id: i,
+      x: cx + Math.cos(angle) * radius,
+      y: cy + Math.sin(angle) * radius,
+    };
+  });
+  const edgeEls = [];
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const key = `${i}:${j}`;
+      const active = activeEdges.has(key);
+      edgeEls.push(`<line x1="${nodes[i].x.toFixed(1)}" y1="${nodes[i].y.toFixed(1)}" x2="${nodes[j].x.toFixed(1)}" y2="${nodes[j].y.toFixed(1)}" stroke="${active ? '#58a6ff' : '#30363d'}" stroke-width="${active ? 3 : 1}" opacity="${active ? 0.95 : 0.55}" />`);
+    }
+  }
+  const nodeEls = nodes.map(n => {
+    const active = n.id === activeAgent;
+    return `<g>
+      <circle cx="${n.x.toFixed(1)}" cy="${n.y.toFixed(1)}" r="${active ? 12 : 10}" fill="${active ? '#39c5cf' : '#1c2128'}" stroke="${active ? '#f0f6fc' : '#30363d'}" stroke-width="2" />
+      <text x="${n.x.toFixed(1)}" y="${(n.y + 3.5).toFixed(1)}" text-anchor="middle" fill="${active ? '#0d1117' : '#c9d1d9'}" class="font-mono text-[10px] font-semibold">A${n.id}</text>
+    </g>`;
+  }).join('');
+  const turnLabel = curRound == null || curTurn == null || curRound < 0
+    ? 'No active turn'
+    : `R${curRound} T${curTurn}`;
+
+  return `<div class="fixed right-4 bottom-10 z-20 w-60 rounded-lg border border-term-border bg-term-surface/95 shadow-xl backdrop-blur-sm overflow-hidden pointer-events-none">
+    <div class="flex items-center justify-between px-3 py-2 border-b border-term-border bg-term-panel">
+      <span class="text-[10px] font-mono font-semibold text-term-muted uppercase tracking-wider">Network</span>
+      <span class="text-[10px] font-mono text-term-muted">${esc(turnLabel)} · ${activeEdges.size} edge${activeEdges.size === 1 ? '' : 's'}</span>
+    </div>
+    <svg viewBox="0 0 ${width} ${height}" class="block w-full h-44 bg-term-bg">
+      ${edgeEls.join('')}
+      ${nodeEls}
+    </svg>
+  </div>`;
+}
+
+// ============================================================
+// TAB 2: CONTEXT WINDOW
+// ============================================================
+function renderContextTab() {
+  const ev = S.events[S.currentSeq];
+  if (!ev) { tabContext.innerHTML = '<div class="p-8 text-term-muted text-sm text-center">No event selected</div>'; return; }
+  const d = ev.data || {};
+
+  let html = `<div class="space-y-3">`;
+
+  // Event header
+  html += `<div class="flex items-center gap-3 pb-2 border-b border-term-border">
+    <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold ${phaseClass(eventPhase(ev) || '')}">${esc(eventPhase(ev) || '—')}</span>
+    <span class="font-mono font-semibold text-term-bright">${esc(ev.type)}</span>
+    <span class="text-term-muted font-mono text-xs">seq=${ev.seq}  round=${d.round ?? '—'}  turn=${d.turn ?? '—'}</span>
+    ${d.agent_id != null ? `<span class="ml-auto text-term-cyan font-mono text-xs">Agent ${d.agent_id}</span>` : ''}
+  </div>`;
+
+  // System prompt (agent_registered events)
+  if (d.system_prompt) {
+    html += collapsible('System Prompt', `<pre class="system-prompt-panel text-xs font-mono text-term-text leading-relaxed">${esc(d.system_prompt)}</pre>`, false);
+  }
+
+  // Prompt sent to agent this turn (turn_start / decide_start)
+  if (d.prompt_sent) {
+    const label = ev.type === 'reflection_start'
+      ? 'Reflection Prompt'
+      : ev.type === 'decide_start'
+        ? 'Decision Prompt'
+        : (d.turn === 0 ? 'Round Start Prompt' : 'Turn Prompt');
+    html += collapsible(label, `<pre class="text-xs font-mono text-term-text leading-relaxed">${esc(d.prompt_sent)}</pre>`, false);
+  }
+
+  // Calendar render / snapshot
+  if (d.calendar_render) {
+    html += collapsible('Calendar Render', `<pre class="text-xs font-mono text-term-text leading-relaxed">${esc(d.calendar_render)}</pre>`, false);
+  }
+  if (d.calendar_snapshot_render) {
+    html += collapsible('Calendar Snapshot', `<pre class="text-xs font-mono text-term-text leading-relaxed">${esc(d.calendar_snapshot_render)}</pre>`, false);
+  }
+
+  // Inbox messages
+  if (d.inbox_drained && d.inbox_drained.length > 0) {
+    const msgs = d.inbox_drained.map(m =>
+      `<div class="border border-term-border/50 rounded p-2 mb-1">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-[10px] font-mono text-term-muted">From A${m.from ?? m.from_agent ?? '?'}</span>
+          ${m.channel ? `<span class="text-[10px] font-mono text-term-blue">${esc(String(m.channel))}</span>` : ''}
+        </div>
+        <div class="text-xs font-mono text-term-text">${esc(String(m.content || ''))}</div>
+      </div>`
+    ).join('');
+    html += collapsible(`Inbox (${d.inbox_drained.length} messages)`, msgs, false);
+  }
+
+  // Message content (DM / participant groupchat / all-agent groupchat events)
+  if (isMessageEvent(ev, { includeRejected: true })) {
+    html += `<div class="border border-term-border/50 rounded p-3 bg-term-bg">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-[10px] font-mono text-term-muted uppercase tracking-wider">Message</span>
+        <span class="text-[10px] font-mono text-term-blue">${esc(messageKind(ev))}</span>
+        <span class="text-[10px] font-mono text-term-cyan">A${d.from_agent ?? '?'} → ${esc(messageRecipientLabel(ev))}</span>
+        ${d.meeting_id != null ? `<span class="text-[10px] font-mono text-term-muted">M${d.meeting_id}</span>` : ''}
+      </div>
+      <pre class="text-xs font-mono text-term-text whitespace-pre-wrap">${esc(String(d.content || ''))}</pre>
+      ${ev.type === 'dm_rejected' && d.reason ? `<div class="text-xs font-mono text-term-red mt-2">Reason: ${esc(d.reason)}</div>` : ''}
+    </div>`;
+  }
+
+  if (ev.type === 'reflection_end') {
+    const estimates = normalizeBeliefEstimates(d.estimates || [], getNumSlots());
+    const summary = summarizeBeliefs(estimates);
+    html += `<div class="border border-term-border rounded bg-term-bg overflow-hidden">
+      <div class="flex items-center justify-between gap-3 px-3 py-2 bg-term-panel border-b border-term-border">
+        <div>
+          <div class="text-sm font-mono font-semibold text-term-bright">Agent ${esc(String(d.agent_id ?? '?'))}'s beliefs about Agent ${esc(String(d.target_agent_id ?? '?'))}</div>
+          <div class="text-[10px] font-mono text-term-muted">More free: ${summary.free} · More occupied: ${summary.busy} · No additional information: ${summary.zero}</div>
+        </div>
+        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-term-blueDim text-term-blue border border-term-blueDim">${esc(d.reflection_scope || 'round')}</span>
+      </div>
+      <div class="p-3">
+        ${renderBeliefGrid(estimates, false)}
+        <div class="mt-3 flex flex-wrap gap-3 text-[10px] font-mono text-term-muted">
+          <span><span class="text-term-blue">negative</span> = more willing to say free</span>
+          <span><span class="text-term-red">positive</span> = more willing to say occupied</span>
+          <span>0 = no additional information</span>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // Model text output
+  if (d.text) {
+    const collapsed = !!d.thinking;
+    html += collapsible('Model Output', `<pre class="text-xs font-mono text-term-text bg-term-panel border border-term-border rounded p-3 max-h-48 overflow-y-auto leading-relaxed">${esc(d.text)}</pre>`, collapsed);
+  }
+
+  // Thinking
+  if (d.thinking) {
+    html += collapsible('Thinking Trace', `<pre class="text-xs font-mono text-term-muted/80 italic leading-relaxed">${esc(d.thinking)}</pre>`, true);
+  }
+
+  // Tool calls
+  if (d.tool_calls && d.tool_calls.length > 0) {
+    const tcs = d.tool_calls.map((tc, i) => {
+      const name = tc.name || tc.function?.name || tc.type || `call_${i}`;
+      const args = tc.input ?? tc.function?.arguments ?? tc.arguments ?? tc;
+      const argsStr = typeof args === 'string' ? args : JSON.stringify(args, null, 2);
+      return `<div class="border border-term-border/50 rounded mb-1">
+        <div class="flex items-center gap-2 px-3 py-1.5 bg-term-panel rounded-t border-b border-term-border/50">
+          <span class="text-[10px] font-mono text-term-blue font-semibold uppercase">${esc(name)}</span>
+        </div>
+        <pre class="text-xs font-mono text-term-text p-3 max-h-32 overflow-y-auto">${esc(argsStr)}</pre>
+      </div>`;
+    }).join('');
+    html += collapsible(`Tool Calls (${d.tool_calls.length})`, tcs, false);
+  }
+
+  // Batch rejected conflict
+  if (d.conflict_description) {
+    html += `<div class="border border-term-red/40 rounded p-3 bg-term-redDim/20">
+      <div class="text-[10px] font-mono text-term-red uppercase tracking-wider mb-1">Conflict Description</div>
+      <div class="text-xs font-mono text-term-text">${esc(d.conflict_description)}</div>
+    </div>`;
+  }
+  if (d.actions && ev.type === 'batch_rejected') {
+    html += collapsible('Submitted Actions', `<pre class="text-xs font-mono text-term-text">${esc(JSON.stringify(d.actions, null, 2))}</pre>`, true);
+  }
+
+  // Resolution details
+  if (ev.type === 'resolution') {
+    const coordBadge = d.coordinated
+      ? `<span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-term-greenDim text-term-green border border-term-greenDim">✓ COORDINATED</span>`
+      : `<span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-term-redDim text-term-red border border-term-redDim">✗ MISSED</span>`;
+    const perAgentRows = Object.entries(d.per_agent_slot || {}).map(([aid, slot]) =>
+      `<div class="flex gap-4 text-xs font-mono"><span class="text-term-muted">Agent ${esc(aid)}</span><span class="text-term-bright">Slot ${slot}</span></div>`
+    ).join('');
+    html += `<div class="border border-term-border rounded p-3 space-y-2">
+      <div class="flex items-center gap-2">
+        <span class="font-mono text-sm text-term-bright">Meeting M${d.meeting_id}</span>
+        ${coordBadge}
+      </div>
+      <div class="space-y-1">${perAgentRows}</div>
+      ${Object.keys(d.slot_conflicts||{}).length > 0 ? `<div class="text-term-red text-xs font-mono">⚠ Slot conflicts detected</div>` : ''}
+    </div>`;
+  }
+
+  // Usage / latency
+  if (d.usage) {
+    const u = d.usage;
+    html += `<div class="flex flex-wrap gap-4 text-xs font-mono text-term-muted border-t border-term-border pt-2">
+      ${u.prompt_tokens != null ? `<span>input <span class="text-term-text">${u.prompt_tokens}</span> tok</span>` : ''}
+      ${u.completion_tokens != null ? `<span>output <span class="text-term-text">${u.completion_tokens}</span> tok</span>` : ''}
+      ${u.reasoning_tokens != null ? `<span>reasoning <span class="text-term-purple">${u.reasoning_tokens}</span> tok</span>` : ''}
+      ${u.cached_prompt_tokens != null ? `<span>cached <span class="text-term-cyan">${u.cached_prompt_tokens}</span> tok</span>` : ''}
+      ${d.latency_ms != null ? `<span>latency <span class="text-term-amber">${Math.round(d.latency_ms)}ms</span></span>` : ''}
+      ${d.retry_count != null ? `<span>retries <span class="${d.retry_count > 0 ? 'text-term-red' : 'text-term-green'}">${d.retry_count}</span></span>` : ''}
+    </div>`;
+  }
+
+  // Raw API response (collapsible)
+  if (d.raw_api_response) {
+    html += collapsible('Raw API Response', `<pre class="text-xs font-mono text-term-muted/70 max-h-64 overflow-y-auto">${esc(JSON.stringify(d.raw_api_response, null, 2))}</pre>`, true);
+  }
+
+  html += '</div>';
+  tabContext.innerHTML = html;
+
+  // Attach collapsible handlers
+  attachCollapsibles();
+}
+
+function collapsible(title, content, collapsed = true) {
+  const id = `coll_${Math.random().toString(36).slice(2)}`;
+  return `<div class="border border-term-border/50 rounded overflow-hidden">
+    <button class="w-full flex items-center justify-between px-3 py-2 bg-term-panel text-left hover:bg-term-surface transition-colors collapsible-trigger" data-target="${id}">
+      <span class="text-[11px] font-mono font-semibold text-term-muted uppercase tracking-wider">${esc(title)}</span>
+      <span class="text-term-muted text-xs collapsible-arrow">${collapsed ? '▸' : '▾'}</span>
+    </button>
+    <div id="${id}" class="collapsible-content ${collapsed ? 'collapsed' : ''}" style="max-height:${collapsed ? '0' : '1000px'}">
+      <div class="p-3 bg-term-bg">${content}</div>
+    </div>
+  </div>`;
+}
+
+function attachCollapsibles() {
+  document.querySelectorAll('.collapsible-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      const isCollapsed = target.classList.contains('collapsed');
+      target.classList.toggle('collapsed', !isCollapsed);
+      target.style.maxHeight = isCollapsed ? '2000px' : '0';
+      btn.querySelector('.collapsible-arrow').textContent = isCollapsed ? '▾' : '▸';
+    });
+  });
+}
+
+// ============================================================
+// TAB 3: MESSAGES
+// ============================================================
+function renderMessagesTab() {
+  const ev = S.events[S.currentSeq];
+  const currentRound = ev?.data?.round ?? 0;
+
+  // Collect all cheap-talk message events for this round.
+  const messageEvents = S.events.filter(e =>
+    isMessageEvent(e, { includeRejected: true }) &&
+    e.data?.round === currentRound
+  );
+
+  if (!messageEvents.length) {
+    tabMessages.innerHTML = `<div class="p-8 text-term-muted text-sm text-center font-mono">No messages for Round ${currentRound}</div>`;
+    return;
+  }
+
+  // Group by turn
+  const byTurn = {};
+  for (const msg of messageEvents) {
+    const t = msg.data?.turn ?? 0;
+    if (!byTurn[t]) byTurn[t] = [];
+    byTurn[t].push(msg);
+  }
+
+  let html = `<div class="space-y-4">`;
+  html += `<div class="text-xs font-mono text-term-muted pb-1 border-b border-term-border">Round ${currentRound} · ${messageEvents.length} messages</div>`;
+
+  for (const [turn, msgs] of Object.entries(byTurn).sort((a,b) => a[0]-b[0])) {
+    html += `<div>
+      <div class="text-[10px] font-mono text-term-muted uppercase tracking-wider mb-2">Turn ${turn}</div>
+      <div class="space-y-2">`;
+    for (const msg of msgs) {
+      const d = msg.data || {};
+      const rejected = msg.type === 'dm_rejected';
+      const borderColor = rejected ? 'border-term-red/50' : 'border-term-blue/30';
+      const bg = rejected ? 'bg-term-redDim/10' : 'bg-term-blueDim/10';
+      html += `<div class="border ${borderColor} ${bg} rounded p-3 cursor-pointer hover:border-term-blue/50 transition-all dm-row" data-seq="${msg.seq}">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-[10px] font-mono ${rejected ? 'text-term-red' : 'text-term-blue'} font-semibold">${rejected ? '✗ REJECTED' : '✓ ' + esc(messageKind(msg))}</span>
+          <span class="text-[10px] font-mono text-term-muted">A${d.from_agent ?? '?'} → ${esc(messageRecipientLabel(msg))}</span>
+          ${d.meeting_id != null ? `<span class="text-[10px] font-mono text-term-muted">M${d.meeting_id}</span>` : ''}
+          <span class="ml-auto text-[10px] font-mono text-term-muted/50">seq=${msg.seq}</span>
+        </div>
+        <div class="text-xs font-mono text-term-text leading-relaxed">${esc(String(d.content || ''))}</div>
+        ${rejected && d.reason ? `<div class="text-xs font-mono text-term-red mt-1">Reason: ${esc(d.reason)}</div>` : ''}
+      </div>`;
+    }
+    html += `</div></div>`;
+  }
+  html += `</div>`;
+  tabMessages.innerHTML = html;
+
+  // Jump to message event on click
+  tabMessages.querySelectorAll('.dm-row').forEach(row => {
+    row.addEventListener('click', () => jumpToSeq(Number(row.dataset.seq)));
+  });
+}
+
+// ============================================================
+// METRICS OVERLAY
+// ============================================================
+metricsBtn.addEventListener('click', openMetrics);
+metricsClose.addEventListener('click', closeMetrics);
+metricsOverlay.addEventListener('click', e => { if (e.target === metricsOverlay) closeMetrics(); });
+
+function openMetrics() {
+  renderMetricsContent();
+  metricsOverlay.classList.remove('hidden');
+}
+function closeMetrics() {
+  metricsOverlay.classList.add('hidden');
+}
+
+function renderMetricsContent() {
+  const t = S.trace;
+  if (!t) return;
+  const m = t.metrics || {};
+  const fs = t.final_state || {};
+
+  let html = `<div class="space-y-6">`;
+
+  // Overall metrics
+  const overallMetrics = [
+    { label: 'Coordination Rate', val: pct(m.coordination_rate), color: m.coordination_rate >= 1 ? 'text-term-green' : 'text-term-amber' },
+    { label: 'Efficiency', val: msgPerRound(m), color: 'text-term-blue' },
+    { label: 'Fairness', val: pct(m.fairness), color: 'text-term-cyan' },
+    { label: 'Meetings Scheduled', val: m.meetings_scheduled ?? '—', color: 'text-term-text' },
+    { label: 'Realized Cost', val: m.realized_cost ?? '—', color: 'text-term-amber' },
+    { label: 'Optimal Cost', val: m.optimal_cost ?? '—', color: 'text-term-green' },
+    { label: 'Greedy Cost', val: m.greedy_cost ?? '—', color: 'text-term-muted' },
+  ];
+  html += `<div>
+    <div class="text-xs font-mono font-semibold text-term-muted uppercase tracking-wider mb-3">Overall Metrics</div>
+    <div class="grid grid-cols-2 gap-2">
+      ${overallMetrics.map(om => `
+        <div class="border border-term-border rounded p-3 bg-term-bg">
+          <div class="text-[10px] font-mono text-term-muted uppercase">${esc(om.label)}</div>
+          <div class="text-xl font-mono font-bold ${om.color} mt-1">${esc(String(om.val))}</div>
+        </div>
+      `).join('')}
+    </div>
+  </div>`;
+
+  // Cost comparison bar
+  const realized = m.realized_cost || 0;
+  const optimal  = m.optimal_cost || 1;
+  const greedy   = m.greedy_cost || 1;
+  const maxCost  = Math.max(realized, optimal, greedy, 1);
+  html += `<div>
+    <div class="text-xs font-mono font-semibold text-term-muted uppercase tracking-wider mb-3">Cost Comparison</div>
+    <div class="space-y-2">
+      ${costBar('Realized', realized, maxCost, '#d29922')}
+      ${costBar('Optimal',  optimal,  maxCost, '#3fb950')}
+      ${costBar('Greedy',   greedy,   maxCost, '#6e7681')}
+    </div>
+  </div>`;
+
+  // Per-agent stats
+  const perAgentCost = fs.per_agent_cost || [];
+  if (perAgentCost.length) {
+    const agentMsgSent = {};
+    const agentMsgRecv = {};
+    const agentRetries = {};
+    for (const ev of S.events) {
+      const d = ev.data || {};
+      if (isMessageEvent(ev)) {
+        agentMsgSent[d.from_agent] = (agentMsgSent[d.from_agent] || 0) + 1;
+        const recipients = ev.type === 'dm_sent'
+          ? [d.to_agent]
+          : (Array.isArray(d.to_agents) ? d.to_agents : []);
+        for (const to of recipients) {
+          agentMsgRecv[to] = (agentMsgRecv[to] || 0) + 1;
+        }
+      }
+      if (ev.type === 'decide_end' && d.retry_count) {
+        agentRetries[d.agent_id] = (agentRetries[d.agent_id] || 0) + d.retry_count;
+      }
+    }
+    html += `<div>
+      <div class="text-xs font-mono font-semibold text-term-muted uppercase tracking-wider mb-3">Per-Agent Stats</div>
+      <table class="w-full text-xs font-mono border border-term-border rounded overflow-hidden">
+        <thead>
+          <tr class="bg-term-panel text-term-muted text-[10px] uppercase">
+            <th class="text-left px-3 py-2">Agent</th>
+            <th class="text-right px-3 py-2">Cost</th>
+            <th class="text-right px-3 py-2">Msg Sent</th>
+            <th class="text-right px-3 py-2">Msg Recv</th>
+            <th class="text-right px-3 py-2">Retries</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${perAgentCost.map((c, i) => `
+            <tr class="border-t border-term-border/50 hover:bg-term-panel/50 transition-colors">
+              <td class="px-3 py-2 text-term-cyan">Agent ${i}</td>
+              <td class="px-3 py-2 text-right text-term-amber font-semibold">${c}</td>
+              <td class="px-3 py-2 text-right text-term-text">${agentMsgSent[i] || 0}</td>
+              <td class="px-3 py-2 text-right text-term-text">${agentMsgRecv[i] || 0}</td>
+              <td class="px-3 py-2 text-right ${(agentRetries[i]||0) > 0 ? 'text-term-red' : 'text-term-muted'}">${agentRetries[i] || 0}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  }
+
+  // Round outcomes table
+  const roundOutcomes = fs.round_outcomes || [];
+  const resolutionEvents = S.events.filter(e => e.type === 'resolution');
+  if (resolutionEvents.length) {
+    html += `<div>
+      <div class="text-xs font-mono font-semibold text-term-muted uppercase tracking-wider mb-3">Resolution Results</div>
+      <table class="w-full text-xs font-mono border border-term-border rounded overflow-hidden">
+        <thead>
+          <tr class="bg-term-panel text-term-muted text-[10px] uppercase">
+            <th class="text-left px-3 py-2">Meeting</th>
+            <th class="text-right px-3 py-2">Coordinated</th>
+            <th class="px-3 py-2">Per-Agent Slots</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${resolutionEvents.map(ev => {
+            const d = ev.data || {};
+            const coord = d.coordinated;
+            const slots = Object.entries(d.per_agent_slot || {}).map(([a,s]) => `A${a}→S${s}`).join(', ');
+            return `<tr class="border-t border-term-border/50 hover:bg-term-panel/50 transition-colors">
+              <td class="px-3 py-2 text-term-bright">M${d.meeting_id}</td>
+              <td class="px-3 py-2 text-right">
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold ${coord ? 'bg-term-greenDim text-term-green' : 'bg-term-redDim text-term-red'}">
+                  ${coord ? '✓ YES' : '✗ NO'}
+                </span>
+              </td>
+              <td class="px-3 py-2 text-term-muted">${esc(slots)}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  }
+
+  html += `</div>`;
+  metricsContent.innerHTML = html;
+}
+
+function costBar(label, val, max, color) {
+  const pctWidth = Math.round((val / max) * 100);
+  return `<div class="flex items-center gap-3">
+    <span class="w-20 text-[10px] font-mono text-term-muted text-right shrink-0">${esc(label)}</span>
+    <div class="flex-1 h-5 bg-term-panel rounded overflow-hidden border border-term-border/50">
+      <div class="bar-fill h-full rounded" style="width:${pctWidth}%;background:${color}"></div>
+    </div>
+    <span class="w-6 text-[11px] font-mono text-term-text shrink-0">${val}</span>
+  </div>`;
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function esc(str) {
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+// ============================================================
+// THEME TOGGLE
+// ============================================================
+const themeToggle = $('theme-toggle');
+
+(function initTheme() {
+  const saved = localStorage.getItem('caltrace-theme') || 'dark';
+  if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  syncThemeBtn();
+})();
+
+themeToggle.addEventListener('click', () => {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  if (isLight) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('caltrace-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('caltrace-theme', 'light');
+  }
+  syncThemeBtn();
+});
+
+function syncThemeBtn() {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  themeToggle.textContent = isLight ? '☾ DARK' : '☀ LIGHT';
+}
+
+// ============================================================
+// INIT
+// ============================================================
+// Nothing to do on load — wait for file
+updateNavButtons();
+</script>
+</body>
+</html>

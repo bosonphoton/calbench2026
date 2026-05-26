@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>a2a Trace Viewer</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>a2a Trace Viewer</h1>
+      <div class="subtitle">Calendar game trace inspector</div>
+    </div>
+    <label class="file-btn">
+      <input type="file" id="file-input" accept=".json,.jsonl,application/json,application/x-ndjson" />
+      <span>Open trace</span>
+    </label>
+    <div id="status" class="status">Drop a trace JSON or JSONL file to begin.</div>
+  </header>
+
+  <main>
+    <section class="panel" id="header-panel">
+      <h2>Trace</h2>
+      <p class="empty-state">No trace loaded.</p>
+    </section>
+
+    <section class="panel controls-panel" aria-label="Timeline filters">
+      <h2>Timeline Filters</h2>
+      <div class="filter-grid">
+        <label><input type="checkbox" data-channel-filter="dm" checked /> DMs</label>
+        <label><input type="checkbox" data-channel-filter="participant_groupchat" checked /> Participant groupchat</label>
+        <label><input type="checkbox" data-channel-filter="all_groupchat" checked /> All groupchat</label>
+        <label><input type="checkbox" data-event-filter="agent_turns" checked /> Agent turns</label>
+        <label><input type="checkbox" data-event-filter="actions" checked /> Decisions and actions</label>
+        <label><input type="checkbox" data-event-filter="system" checked /> System events</label>
+      </div>
+    </section>
+
+    <section class="panel timeline" id="timeline">
+      <h2>Events (0)</h2>
+      <p class="empty-state">Load a trace to see the event timeline.</p>
+    </section>
+  </main>
+
+  <div id="dropzone" class="dropzone hidden">Drop trace file to load</div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

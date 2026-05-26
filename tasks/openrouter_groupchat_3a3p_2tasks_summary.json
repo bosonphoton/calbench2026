@@ -1,0 +1,24 @@
+{
+  "num_tasks": 2,
+  "setting": "openrouter_groupchat_3a3p_2tasks",
+  "task_ids": [
+    "openrouter_groupchat_3a3p_t001",
+    "openrouter_groupchat_3a3p_t002"
+  ],
+  "tasks": [
+    {
+      "density": 0.5,
+      "greedy_cost": 1,
+      "optimal_cost": 0,
+      "seed": 930001,
+      "task_id": "openrouter_groupchat_3a3p_t001"
+    },
+    {
+      "density": 0.65,
+      "greedy_cost": 3,
+      "optimal_cost": 0,
+      "seed": 930002,
+      "task_id": "openrouter_groupchat_3a3p_t002"
+    }
+  ]
+}

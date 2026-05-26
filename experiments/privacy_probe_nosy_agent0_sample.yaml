@@ -1,0 +1,129 @@
+name: privacy_probe_nosy_agent0_sample
+description: Small smoke run with agent 0 using the nosy privacy-probing prompt variant.
+defaults:
+  game_name: calendar
+  num_slots: 16
+  max_turns_per_round: 15
+  dm_cap: 1000000
+  decision_retries: 3
+  enable_fallback: false
+  fallback_max_depth: 3
+batches:
+- label: uniform_b001_easy_2a_2p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 320014
+    task_path: tasks/uniform_full.jsonl
+    task_id: b001_easy_2a_2p_d0p6_c1_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dspy
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+      prompt_variant: privacy_probe_nosy_v1.md
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    nosy_agent_ids:
+    - 0
+    privacy_probe_variant: nosy_agent0_v1
+- label: uniform_b108_hard_5a_5p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 328086
+    task_path: tasks/uniform_full.jsonl
+    task_id: b108_hard_5a_5p_d1p0_c1_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 1
+    errand_cost_level: 1
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dspy
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+      prompt_variant: privacy_probe_nosy_v1.md
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    nosy_agent_ids:
+    - 0
+    privacy_probe_variant: nosy_agent0_v1
+- label: varied_b001_easy_2a_2p_d0p6_c3_1
+  count: 1
+  config:
+    seed: 420000
+    task_path: tasks/varied_full.jsonl
+    task_id: b001_easy_2a_2p_d0p6_c3_1
+    num_agents: 2
+    num_slots: 16
+    density: 0.6
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 2
+    agents:
+    - type: dspy
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+      prompt_variant: privacy_probe_nosy_v1.md
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    nosy_agent_ids:
+    - 0
+    privacy_probe_variant: nosy_agent0_v1
+- label: varied_b108_hard_5a_5p_d1p0_c3_4
+  count: 1
+  config:
+    seed: 428044
+    task_path: tasks/varied_full.jsonl
+    task_id: b108_hard_5a_5p_d1p0_c3_4
+    num_agents: 5
+    num_slots: 16
+    density: 1.0
+    pref_level: 3
+    errand_cost_level: 1000
+    meeting_cost_level: 1
+    num_meetings: 5
+    num_participants: 5
+    agents:
+    - type: dspy
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+      prompt_variant: privacy_probe_nosy_v1.md
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    - type: llm
+      model: publishers/google/models/gemini-3.1-pro-preview
+      api_format: vertexai
+    nosy_agent_ids:
+    - 0
+    privacy_probe_variant: nosy_agent0_v1

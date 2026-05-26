@@ -1,0 +1,43 @@
+name: openrouter_calbench90_5a3p_1task
+description: >
+  One-task real-model smoke run for the CalBench 90-task fixture, using five
+  agents, three meeting participants, and all communication channels enabled.
+defaults:
+  game_name: calendar
+  task_path: tasks/calbench_90_uniform.jsonl
+  num_agents: 5
+  num_slots: 16
+  num_meetings: 5
+  num_participants: 3
+  max_turns_per_round: 100
+  dm_cap: 100
+  decision_retries: 1
+  enable_fallback: false
+  communication_protocol: all
+  agents:
+    - type: llm
+      model: qwen/qwen3-8b
+      temperature: 0.0
+      max_tokens: 1024
+    - type: llm
+      model: meta-llama/llama-3.1-8b-instruct
+      temperature: 0.0
+      max_tokens: 1024
+    - type: llm
+      model: openai/gpt-oss-20b
+      temperature: 0.0
+      max_tokens: 1024
+    - type: llm
+      model: qwen/qwen3-8b
+      temperature: 0.0
+      max_tokens: 1024
+    - type: llm
+      model: meta-llama/llama-3.1-8b-instruct
+      temperature: 0.0
+      max_tokens: 1024
+batches:
+  - label: calbench90_uniform_easy_d0p6_t001
+    count: 1
+    config:
+      seed: 320081
+      task_id: b001_easy_5a_3p_d0p6_c1_1

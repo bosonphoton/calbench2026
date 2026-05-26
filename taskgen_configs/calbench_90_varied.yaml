@@ -1,0 +1,25 @@
+setting_name: calbench_90_varied_5a3p
+description: >
+  Varied-cost half of the 90-task CalBench configuration: the same 5-agent,
+  3-participant, 5-meeting grid as the uniform suite, with each agent receiving
+  a balanced mix of errand costs 1, 10, and 100. Blocked counts are cycled from
+  2/4/6 before CP-SAT difficulty bucketing.
+output: tasks/calbench_90_varied.jsonl
+summary_output: tasks/calbench_90_varied_summary.json
+seed_base: 420000
+candidates_per_config: 100
+selected_per_bucket: 5
+difficulty_scorer: cp_sat_solvable_assignment_fraction
+blocked_errands_per_agent_values: [2, 4, 6]
+configs:
+  - total_agents: 5
+    subset_size: 3
+    num_slots: 16
+    num_meetings: 5
+    densities: [0.6, 0.8, 1.0]
+    vary_agent_densities: true
+    agent_density_values: [0.6, 0.8, 1.0]
+    vary_blocked_errands_per_agent: true
+    pref_level: 3
+    meeting_cost_level: 1
+    errand_cost_values: [1, 10, 100]

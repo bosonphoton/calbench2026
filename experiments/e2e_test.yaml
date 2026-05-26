@@ -1,0 +1,19 @@
+name: e2e_test
+defaults:
+  game_name: calendar
+  num_agents: 2
+  num_slots: 16
+  density: 0.5
+  pref_level: 1
+  num_meetings: 2
+  num_participants: null  # null = all agents; set to 2 to have 2-agent subsets per meeting
+  max_turns_per_round: 10
+  dm_cap: 20
+  decision_retries: 3
+  agents:
+    - {type: llm, model: gpt-5-mini}
+    - {type: llm, model: gpt-5-mini}
+batches:
+  - label: two_meetings
+    count: 1
+    config: {seed: 42, density: 0.5}

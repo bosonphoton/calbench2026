@@ -1,0 +1,282 @@
+name: calbench90_uniform_mixed5_reflection
+description: Mixed five-model CalBench 90 uniform run with per-agent ADC routing and round-level
+  reflection measurement.
+defaults:
+  game_name: calendar
+  task_path: tasks/calbench_90_uniform.jsonl
+  num_agents: 5
+  num_slots: 16
+  num_meetings: 5
+  num_participants: 3
+  max_turns_per_round: 100
+  dm_cap: 100
+  decision_retries: 1
+  enable_fallback: false
+  communication_protocol: all
+  enable_reflection: true
+  reflection_frequency: round
+  reflection_max_parallelism: 20
+  agents:
+  - type: llm
+    model: claude-sonnet-4-6
+    api_format: vertexai_anthropic
+    gcp_project: ${VERTEX_ANTHROPIC_PROJECT}
+    gcp_location: global
+    vertex_adc_file: ${GOOGLE_APPLICATION_CREDENTIALS}
+    temperature: 0.0
+    max_tokens: 1024
+  - type: llm
+    model: publishers/google/models/gemini-3.1-pro-preview
+    api_format: vertexai
+    gcp_project: ${VERTEX_GEMINI_PROJECT}
+    gcp_location: global
+    vertex_adc_file: ${GOOGLE_APPLICATION_CREDENTIALS}
+    temperature: 0.0
+    max_tokens: 1024
+  - type: llm
+    model: publishers/google/models/gemini-3-flash-preview
+    api_format: vertexai
+    gcp_project: ${VERTEX_GEMINI_PROJECT}
+    gcp_location: global
+    vertex_adc_file: ${GOOGLE_APPLICATION_CREDENTIALS}
+    temperature: 0.0
+    max_tokens: 1024
+  - type: llm
+    model: gpt-5.4-mini
+    api_format: openai
+    temperature: 0.0
+    max_tokens: 1024
+  - type: llm
+    model: meta/llama-4-maverick-17b-128e-instruct-maas
+    api_format: vertexai_openai
+    gcp_project: ${VERTEX_OPENAI_PROJECT}
+    gcp_location: us-east5
+    vertex_adc_file: ${GOOGLE_APPLICATION_CREDENTIALS}
+    temperature: 0.0
+    max_tokens: 1024
+batches:
+- label: b001_easy_5a_3p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 320045
+    task_id: b001_easy_5a_3p_d0p6_c1_1
+- label: b002_easy_5a_3p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 320006
+    task_id: b002_easy_5a_3p_d0p6_c1_2
+- label: b003_easy_5a_3p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 320099
+    task_id: b003_easy_5a_3p_d0p6_c1_3
+- label: b004_easy_5a_3p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 320021
+    task_id: b004_easy_5a_3p_d0p6_c1_4
+- label: b005_easy_5a_3p_d0p6_c1_5
+  count: 1
+  config:
+    seed: 320062
+    task_id: b005_easy_5a_3p_d0p6_c1_5
+- label: b006_medium_5a_3p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 320083
+    task_id: b006_medium_5a_3p_d0p6_c1_1
+- label: b007_medium_5a_3p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 320036
+    task_id: b007_medium_5a_3p_d0p6_c1_2
+- label: b008_medium_5a_3p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 320088
+    task_id: b008_medium_5a_3p_d0p6_c1_3
+- label: b009_medium_5a_3p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 320098
+    task_id: b009_medium_5a_3p_d0p6_c1_4
+- label: b010_medium_5a_3p_d0p6_c1_5
+  count: 1
+  config:
+    seed: 320017
+    task_id: b010_medium_5a_3p_d0p6_c1_5
+- label: b011_hard_5a_3p_d0p6_c1_1
+  count: 1
+  config:
+    seed: 320025
+    task_id: b011_hard_5a_3p_d0p6_c1_1
+- label: b012_hard_5a_3p_d0p6_c1_2
+  count: 1
+  config:
+    seed: 320089
+    task_id: b012_hard_5a_3p_d0p6_c1_2
+- label: b013_hard_5a_3p_d0p6_c1_3
+  count: 1
+  config:
+    seed: 320092
+    task_id: b013_hard_5a_3p_d0p6_c1_3
+- label: b014_hard_5a_3p_d0p6_c1_4
+  count: 1
+  config:
+    seed: 320056
+    task_id: b014_hard_5a_3p_d0p6_c1_4
+- label: b015_hard_5a_3p_d0p6_c1_5
+  count: 1
+  config:
+    seed: 320028
+    task_id: b015_hard_5a_3p_d0p6_c1_5
+- label: b016_easy_5a_3p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 321002
+    task_id: b016_easy_5a_3p_d0p8_c1_1
+- label: b017_easy_5a_3p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 321001
+    task_id: b017_easy_5a_3p_d0p8_c1_2
+- label: b018_easy_5a_3p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 321059
+    task_id: b018_easy_5a_3p_d0p8_c1_3
+- label: b019_easy_5a_3p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 321020
+    task_id: b019_easy_5a_3p_d0p8_c1_4
+- label: b020_easy_5a_3p_d0p8_c1_5
+  count: 1
+  config:
+    seed: 321098
+    task_id: b020_easy_5a_3p_d0p8_c1_5
+- label: b021_medium_5a_3p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 321091
+    task_id: b021_medium_5a_3p_d0p8_c1_1
+- label: b022_medium_5a_3p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 321093
+    task_id: b022_medium_5a_3p_d0p8_c1_2
+- label: b023_medium_5a_3p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 321021
+    task_id: b023_medium_5a_3p_d0p8_c1_3
+- label: b024_medium_5a_3p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 321063
+    task_id: b024_medium_5a_3p_d0p8_c1_4
+- label: b025_medium_5a_3p_d0p8_c1_5
+  count: 1
+  config:
+    seed: 321097
+    task_id: b025_medium_5a_3p_d0p8_c1_5
+- label: b026_hard_5a_3p_d0p8_c1_1
+  count: 1
+  config:
+    seed: 321052
+    task_id: b026_hard_5a_3p_d0p8_c1_1
+- label: b027_hard_5a_3p_d0p8_c1_2
+  count: 1
+  config:
+    seed: 321069
+    task_id: b027_hard_5a_3p_d0p8_c1_2
+- label: b028_hard_5a_3p_d0p8_c1_3
+  count: 1
+  config:
+    seed: 321073
+    task_id: b028_hard_5a_3p_d0p8_c1_3
+- label: b029_hard_5a_3p_d0p8_c1_4
+  count: 1
+  config:
+    seed: 321051
+    task_id: b029_hard_5a_3p_d0p8_c1_4
+- label: b030_hard_5a_3p_d0p8_c1_5
+  count: 1
+  config:
+    seed: 321033
+    task_id: b030_hard_5a_3p_d0p8_c1_5
+- label: b031_easy_5a_3p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 322082
+    task_id: b031_easy_5a_3p_d1p0_c1_1
+- label: b032_easy_5a_3p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 322034
+    task_id: b032_easy_5a_3p_d1p0_c1_2
+- label: b033_easy_5a_3p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 322043
+    task_id: b033_easy_5a_3p_d1p0_c1_3
+- label: b034_easy_5a_3p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 322020
+    task_id: b034_easy_5a_3p_d1p0_c1_4
+- label: b035_easy_5a_3p_d1p0_c1_5
+  count: 1
+  config:
+    seed: 322072
+    task_id: b035_easy_5a_3p_d1p0_c1_5
+- label: b036_medium_5a_3p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 322088
+    task_id: b036_medium_5a_3p_d1p0_c1_1
+- label: b037_medium_5a_3p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 322057
+    task_id: b037_medium_5a_3p_d1p0_c1_2
+- label: b038_medium_5a_3p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 322089
+    task_id: b038_medium_5a_3p_d1p0_c1_3
+- label: b039_medium_5a_3p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 322080
+    task_id: b039_medium_5a_3p_d1p0_c1_4
+- label: b040_medium_5a_3p_d1p0_c1_5
+  count: 1
+  config:
+    seed: 322028
+    task_id: b040_medium_5a_3p_d1p0_c1_5
+- label: b041_hard_5a_3p_d1p0_c1_1
+  count: 1
+  config:
+    seed: 322084
+    task_id: b041_hard_5a_3p_d1p0_c1_1
+- label: b042_hard_5a_3p_d1p0_c1_2
+  count: 1
+  config:
+    seed: 322045
+    task_id: b042_hard_5a_3p_d1p0_c1_2
+- label: b043_hard_5a_3p_d1p0_c1_3
+  count: 1
+  config:
+    seed: 322003
+    task_id: b043_hard_5a_3p_d1p0_c1_3
+- label: b044_hard_5a_3p_d1p0_c1_4
+  count: 1
+  config:
+    seed: 322008
+    task_id: b044_hard_5a_3p_d1p0_c1_4
+- label: b045_hard_5a_3p_d1p0_c1_5
+  count: 1
+  config:
+    seed: 322023
+    task_id: b045_hard_5a_3p_d1p0_c1_5
